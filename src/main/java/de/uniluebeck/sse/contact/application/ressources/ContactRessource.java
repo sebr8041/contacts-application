@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Daniel Rickert
  */
 @RestController
-@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/api/contact")
+@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, value = "/api/contact")
 public class ContactRessource {
 
     @Autowired
@@ -28,7 +28,7 @@ public class ContactRessource {
         return contactRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Contact getById(@PathVariable("id") final String id) {
         Validate.notBlank(id);
         return contactRepository.findOne(id);
@@ -46,7 +46,7 @@ public class ContactRessource {
         return contactRepository.save(contact);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void deleteContact(@PathVariable("id") final String id) {
         contactRepository.delete(id);
         // TODO add logic to remove contact from all of its companies!

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Daniel Rickert
  */
 @RestController
-@RequestMapping(path = "/api/category", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/company", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CompanyRessource {
     @Autowired
     private CategoryRepository categoryRepository;
@@ -29,7 +29,7 @@ public class CompanyRessource {
         return categoryRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Category getById(@PathVariable("id") final String id) {
         Validate.notBlank(id);
         return categoryRepository.findOne(id);
@@ -47,7 +47,7 @@ public class CompanyRessource {
         return categoryRepository.save(category);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void deleteCategory(@PathVariable("id") final String id) {
         categoryRepository.delete(id);
     }
