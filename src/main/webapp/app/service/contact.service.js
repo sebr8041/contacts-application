@@ -30,10 +30,18 @@ var ContactsService = (function (_super) {
      * Returns a List of all Contacts.
      */
     ContactsService.prototype.get = function () {
-        return this.http.get("http://localhost:3000/rest_stubs/contacts.json")
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get("http://localhost:1337/api/contact", {
+            headers: headers
+        })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
+        /** return this.http.get("http://localhost:3000/rest_stubs/contacts.json")
+            .toPromise()
+            .then(response => response.json() as Contact[])
+            .catch(this.handleError); */
     };
     /**
      * Returns a List of all Contacts.

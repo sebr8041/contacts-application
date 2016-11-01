@@ -16,6 +16,7 @@ var ShowContactsComponent = (function () {
         this.contactsService = contactsService;
         this.route = route;
         //  this.contactsService.find("1").then((contact) => { this.contact = contact; console.log(contact) });
+        this.contactsService.get().then(function (contatcs) { return console.log("hier", contatcs); });
     }
     ShowContactsComponent.prototype.resolve = function (route) {
         console.log(this);
