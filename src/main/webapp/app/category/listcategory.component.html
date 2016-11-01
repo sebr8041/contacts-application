@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+           <h3 class="panel-title">Kategorien</h3>
+    </div>
+	<div class="panel-body">
+		<p>Im folgenden werden alle Kategorien aufgelistet. Sie haben die Möglichkeit die Kategorien 
+            anzuzeigen(<span class="glyphicon glyphicon-search"></span>), 
+            zu bearbeiten (<span class="glyphicon glyphicon-pencil"></span>) oder 
+            zu löschen(<span class="glyphicon glyphicon-trash"></span>)</p>
+	</div>
+
+	<!-- Table -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Css Color-Code</th>
+				<th>Operationen</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a routerLink="/category/show/1">Geschäftspartner</a>
+				</td>
+				<td>darkgreen</td>
+                <td>
+                    <button routerLink="/category/show/1" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    <button routerLink="/category/edit/1" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+           <h3 class="panel-title">Kontakte</h3>
+    </div>
+	<div class="panel-body">
+		<p>Im folgenden werden alle Kontakte aufgelistet. Sie haben die Möglichkeit die Kontakte 
+            anzuzeigen(<span class="glyphicon glyphicon-search"></span>), 
+            zu bearbeiten (<span class="glyphicon glyphicon-pencil"></span>) oder 
+            zu löschen(<span class="glyphicon glyphicon-trash"></span>)</p>
+	</div>
+
+	<!-- Table -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Firma</th>
+				<th>Kategorie</th>
+				<th>Geburtstag</th>
+				<th>Operationen</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a routerLink="/contacts/show/1">Sebastian Brodersen</a>
+				</td>
+				<td>Brodersen & Rickert Webdesign GbR</td>
+				<td>
+					<a routerLink="/category/show/1"><span class="glyphicon glyphicon-stop" style="color:red"></span>Geschäftspartner</a>
+				</td>
+                <td>04. Januar 1993</td>
+                <td>
+                    <button routerLink="/contacts/show/1" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    <button routerLink="/contacts/edit/1" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+			</tr>
+		</tbody>
+	</table>
+</div>
