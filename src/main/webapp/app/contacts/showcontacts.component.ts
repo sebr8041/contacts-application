@@ -15,12 +15,14 @@ export class ShowContactsComponent implements Resolve<any> {
 
     constructor(private contactsService: ContactsService, private route: ActivatedRoute) {
         //  this.contactsService.find("1").then((contact) => { this.contact = contact; console.log(contact) });
+        this.contactsService.get().then((contatcs) => console.log("hier", contatcs));
     }
 
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
         console.log(this);
+
         return this.contactsService.find("1");
     }
 
 
-} 
+}  
