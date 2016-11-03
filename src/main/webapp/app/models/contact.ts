@@ -4,6 +4,7 @@ export class Contact {
     id: string;
     name: string;
     company: string;
+    dateOfBirth: string;
     category: Category;
     mails: string[];
     phonenumbers: string[];

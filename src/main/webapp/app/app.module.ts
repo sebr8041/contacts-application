@@ -58,7 +58,7 @@ import { HttpModule } from '@angular/http';
     NewContactsComponent,
     ListContactsComponent,
     ImportContactsComponent,
-    ShowContactsComponent
+    ShowContactsComponent,
   ],
   bootstrap: [AppComponent],
 

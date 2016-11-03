@@ -65,7 +65,7 @@ var AppModule = (function () {
                 newcontacts_component_1.NewContactsComponent,
                 listcontacts_component_1.ListContactsComponent,
                 importcontacts_component_1.ImportContactsComponent,
-                showcontacts_component_1.ShowContactsComponent
+                showcontacts_component_1.ShowContactsComponent,
             ],
             bootstrap: [app_component_1.AppComponent],
         }), 
