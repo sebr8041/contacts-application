@@ -17,7 +17,7 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var http_service_1 = require('./http.service');
 var angular2_notifications_1 = require('angular2-notifications');
-require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
 var ContactsService = (function (_super) {
     __extends(ContactsService, _super);
     /**
@@ -32,22 +32,20 @@ var ContactsService = (function (_super) {
     ContactsService.prototype.get = function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:1337/api/contact", {
+        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
             headers: headers
-        })
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-        /** return this.http.get("http://localhost:3000/rest_stubs/contacts.json")
-            .toPromise()
-            .then(response => response.json() as Contact[])
-            .catch(this.handleError); */
+        }).map(function (response) { return response.json(); });
     };
     /**
      * Returns a List of all Contacts.
      */
     ContactsService.prototype.find = function (id) {
-        return this.http.get("http://localhost:3000/rest_stubs/one_contact.json").map(function (response) { return response.json(); });
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
+            headers: headers
+        });
+        //.ap(response => response.json() as Contact);
         /** return this.http.get("http://localhost:3000/rest_stubs/one_contact.json")
              .toPromise()
              .then(response => response.json() as Contact)

@@ -18,9 +18,40 @@ var DashboardComponent = (function () {
         this.notificationService = _notificationService;
         this.contactsService = _contactsService;
     }
+    /**
+     * load contacts from service and fill gui-array for companys and birthdays.
+     */
+    DashboardComponent.prototype.loadContacts = function () {
+        var _this = this;
+        this.companys = [];
+        // load all contacts from service
+        this.contactsService.get().subscribe(function (contacts) {
+            _this.contacts = contacts;
+            _this.contacts.forEach(function (contact) {
+                // ### Company list
+                // create array with all companys unique from the contacts.
+                // company exists in list? 
+                if (!_this.companys.includes(contact.company)) {
+                    // No - push company
+                    _this.companys.push(contact.company);
+                }
+                var contactDate = new Date();
+                // ### Birthday-list
+                var today = new Date();
+                console.log("today:", today);
+                var future10Days = new Date();
+                future10Days.setTime(Date.now() + 1000 * 60 * 60 * 24 * 10);
+                console.log("future", future10Days);
+            });
+        });
+    };
     DashboardComponent.prototype.tuWat = function () {
         this.notificationService.success("Hallo", "Welt");
-        this.contactsService.get().then(function (data) { return data.pop().id; });
+        this.loadContacts();
+        console.log("cewre", this.contacts);
+        //this.contact = this.contactsService.find("12");
+        //this.contact.subscribe(value => console.log(value.json() as Contact[]));
+        // this.contactsService.get().then(data => data.pop().id);
     };
     DashboardComponent = __decorate([
         core_1.Component({

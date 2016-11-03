@@ -11,10 +11,7 @@
 			<div class="panel-heading">Firmen</div>
 			<div class="panel-body">
 				<ul class="list-group">
-					<li class="list-group-item">Company 1</li>
-					<li class="list-group-item">Company 2</li>
-					<li class="list-group-item">Company 3</li>
-					<li class="list-group-item">Company 4</li>
+					<li  *ngFor="let company of companys | orderBy : company : true" class="list-group-item">{{company}}</li>
 				</ul>
 			</div>
 		</div>

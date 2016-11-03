@@ -1,5 +1,6 @@
 package de.uniluebeck.sse.contact.application.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import org.springframework.data.annotation.Id;
 
@@ -16,6 +17,7 @@ public class Contact {
     private Address[] address;
     private String[] phoneNumber;
     private String[] email;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
     public Contact() {
@@ -86,8 +88,5 @@ public class Contact {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    
-    
-    
-    
+
 }

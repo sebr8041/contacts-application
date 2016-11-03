@@ -3,6 +3,7 @@
         "id": "hashbums",
         "name": "Sebastian Brodersen",
         "company": "Brodersen & Rickert Webdesign GbR",
+        "dateOfBirth": "1993-01-04",
         "category": {
             "id": "hashbums",
             "name": "qwrf",
@@ -37,6 +38,42 @@
         "id": "hashbums",
         "name": "Sebastian Brodersen",
         "company": "Brodersen & Rickert Webdesign GbR",
+        "dateOfBirth": "1993-01-04",
+        "category": {
+            "id": "hashbums",
+            "name": "qwrf",
+            "color": "darkgreen"
+        },
+        "mails": [
+            "mail1@xyz.de",
+            "mail2@xyz.de",
+            "mail3@xyz.de"
+        ],
+        "phonenumbers": [
+            "01453 412434",
+            "01453 412434234",
+            "01453 41243412333"
+        ],
+        "addresses": [
+            {
+                "city": "Flensburg",
+                "zipCode": 24941,
+                "street": "Musterstraße",
+                "houseNumber": "12b"
+            },
+            {
+                "city": "Lübeck",
+                "zipCode": 245000,
+                "street": "Musterstraße",
+                "houseNumber": "12"
+            }
+        ]
+    },
+    {
+        "id": "hashbums",
+        "name": "Sebastian Brodersen",
+        "company": "ADings Bums GbR",
+        "dateOfBirth": "1993-01-04",
         "category": {
             "id": "hashbums",
             "name": "qwrf",

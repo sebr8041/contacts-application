@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Contact } from '../models/contact';
 import { HttpService } from './http.service'
 import { NotificationsService } from 'angular2-notifications';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class ContactsService extends HttpService {
@@ -19,28 +19,24 @@ export class ContactsService extends HttpService {
     /**
      * Returns a List of all Contacts.
      */
-    public get(): Promise<Contact[]> {
+    public get(): Observable<Contact[]> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
-        return this.http.get("http://localhost:1337/api/contact",{
+        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
             headers: headers
-        })
-            .toPromise()
-            .then(response => response.json() as Contact[])
-            .catch(this.handleError);
-
-        /** return this.http.get("http://localhost:3000/rest_stubs/contacts.json")
-            .toPromise()
-            .then(response => response.json() as Contact[])
-            .catch(this.handleError); */
+        }).map((response) => response.json() as Contact[]);
     }
 
     /**
      * Returns a List of all Contacts.
      */
-    public find(id: string): Observable<Contact> {
-        return this.http.get("http://localhost:3000/rest_stubs/one_contact.json").map(response => response.json() as Contact);
+    public find(id: string): Observable<Response> {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
+            headers: headers
+        });
+        //.ap(response => response.json() as Contact);
         /** return this.http.get("http://localhost:3000/rest_stubs/one_contact.json")
              .toPromise()
              .then(response => response.json() as Contact)
