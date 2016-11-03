@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * <p>
+ * RestController for Contacts
+ * </p>
+ * 
  * @author Daniel Rickert
  */
 @CrossOrigin
@@ -37,13 +40,13 @@ public class ContactResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Contact addNewContact(@RequestBody Contact contact) {
+    public Contact addNewContact(@RequestBody final Contact contact) {
         Validate.notNull(contact);
         return contactRepository.insert(contact);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Contact updateContext(@RequestBody Contact contact) {
+    public Contact updateContext(@RequestBody final Contact contact) {
         Validate.notNull(contact);
         return contactRepository.save(contact);
     }
