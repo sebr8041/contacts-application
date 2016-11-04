@@ -23,6 +23,7 @@ var editcontacts_component_1 = require('./contacts/editcontacts.component');
 var listcontacts_component_1 = require('./contacts/listcontacts.component');
 var importcontacts_component_1 = require('./contacts/importcontacts.component');
 var showcontacts_component_1 = require('./contacts/showcontacts.component');
+var fulltextfilter_pipe_1 = require('./pipes/fulltextfilter.pipe');
 var angular2_notifications_1 = require('angular2-notifications');
 var http_1 = require('@angular/http');
 var AppModule = (function () {
@@ -66,6 +67,7 @@ var AppModule = (function () {
                 listcontacts_component_1.ListContactsComponent,
                 importcontacts_component_1.ImportContactsComponent,
                 showcontacts_component_1.ShowContactsComponent,
+                fulltextfilter_pipe_1.FulltextFilterPipe
             ],
             bootstrap: [app_component_1.AppComponent],
         }), 

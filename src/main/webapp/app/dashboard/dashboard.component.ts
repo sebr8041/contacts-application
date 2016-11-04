@@ -86,7 +86,7 @@ export class DashboardComponent {
      */
     private loadContacts() {
         // load all contacts from service
-        this.contactsService.get().subscribe((contacts) => {
+        this.contactsService.getAll().subscribe((contacts) => {
             // set contacts from backend
             this.contacts = contacts;
 

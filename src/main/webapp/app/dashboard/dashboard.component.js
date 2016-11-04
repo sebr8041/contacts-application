@@ -49,7 +49,7 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.loadContacts = function () {
         var _this = this;
         // load all contacts from service
-        this.contactsService.get().subscribe(function (contacts) {
+        this.contactsService.getAll().subscribe(function (contacts) {
             // set contacts from backend
             _this.contacts = contacts;
             // reset gui-lists

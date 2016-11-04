@@ -9,15 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var contact_service_1 = require('../service/contact.service');
 var ListContactsComponent = (function () {
-    function ListContactsComponent() {
+    /**
+     * Autowire contactService
+     */
+    function ListContactsComponent(contactService) {
+        var _this = this;
+        this.contactService = contactService;
+        /**
+         * saves all contacts from backend.
+         */
+        this.contacts = [];
+        this.contactService.getAll().subscribe(function (contacts) {
+            _this.contacts = contacts;
+        });
     }
     ListContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
-            templateUrl: 'app/contacts/listcontacts.component.html'
+            templateUrl: 'app/contacts/listcontacts.component.html',
+            providers: [contact_service_1.ContactsService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [contact_service_1.ContactsService])
     ], ListContactsComponent);
     return ListContactsComponent;
 }());

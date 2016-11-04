@@ -21,35 +21,23 @@ require('rxjs/add/operator/map');
 var ContactsService = (function (_super) {
     __extends(ContactsService, _super);
     /**
-     * Autowire
-     */
-    function ContactsService(_http, _notificationService) {
-        _super.call(this, _http, _notificationService);
+     * Autowire Services
+     * TODO: this constructor sucks.
+    */
+    function ContactsService(http, notificationService) {
+        _super.call(this, http, notificationService);
     }
     /**
      * Returns a List of all Contacts.
      */
-    ContactsService.prototype.get = function () {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
-            headers: headers
-        }).map(function (response) { return response.json(); });
+    ContactsService.prototype.getAll = function () {
+        return this.get("contacts.json").map(function (response) { return response.json(); });
     };
     /**
-     * Returns a List of all Contacts.
+     * Returns one contact by id.
      */
     ContactsService.prototype.find = function (id) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
-            headers: headers
-        });
-        //.ap(response => response.json() as Contact);
-        /** return this.http.get("http://localhost:3000/rest_stubs/one_contact.json")
-             .toPromise()
-             .then(response => response.json() as Contact)
-             .catch(this.handleError); */
+        return this.get("contacts.json");
     };
     ContactsService = __decorate([
         core_1.Injectable(), 

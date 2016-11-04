@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Contact } from '../models/contact';
 import { NotificationsService } from 'angular2-notifications';
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Rx';
+import{ RequestOptionsArgs, Headers} from '@angular/http';
 
 /**
  * HttpService handles errors and autowire 
@@ -11,29 +11,38 @@ import 'rxjs/add/operator/toPromise';
 export abstract class HttpService {
 
     /**
-     * HttpService
+     * base url for backend api
      */
-    protected http: Http;
+    private readonly API_BASE_URL : string = "http://localhost:3000/rest_stubs/";
 
     /**
-     * NotificationService
+     * Header for each Backend-API request
      */
-    private notificationService: NotificationsService;
+    private readonly API_HEADER :  RequestOptionsArgs = {
+        headers: (new Headers({
+            'Content-Type': 'application/json'
+        }))
+    };
 
     /**
      * Autowire Services
      */
-    constructor(private _http: Http,
-        private _notificationService: NotificationsService) {
-        this.http = _http;
-        this.notificationService = _notificationService;
+    constructor(protected http: Http,
+        protected notificationService: NotificationsService) {
+    }
+
+    /**
+     * Request Backend Resource by HTTP Typae GET.
+     */
+    protected get(url:string): Observable<Response>{
+        return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
     }
 
     /**
      * Error Handler
      */
-    protected handleError(error: any): Promise<any> {
+    protected handleError(error: any): Observable<any> {
         this.notificationService.error("HTTP Fehler", "Überprüfen Sie Ihre Internetverbindung.");
-        return Promise.reject(error.message || error);
+        return null;
     }
 }

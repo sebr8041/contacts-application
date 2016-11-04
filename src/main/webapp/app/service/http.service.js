@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var angular2_notifications_1 = require('angular2-notifications');
-require('rxjs/add/operator/toPromise');
+var http_2 = require('@angular/http');
 /**
  * HttpService handles errors and autowire
  */
@@ -19,18 +19,34 @@ var HttpService = (function () {
     /**
      * Autowire Services
      */
-    function HttpService(_http, _notificationService) {
-        this._http = _http;
-        this._notificationService = _notificationService;
-        this.http = _http;
-        this.notificationService = _notificationService;
+    function HttpService(http, notificationService) {
+        this.http = http;
+        this.notificationService = notificationService;
+        /**
+         * base url for backend api
+         */
+        this.API_BASE_URL = "http://localhost:3000/rest_stubs/";
+        /**
+         * Header for each Backend-API request
+         */
+        this.API_HEADER = {
+            headers: (new http_2.Headers({
+                'Content-Type': 'application/json'
+            }))
+        };
     }
+    /**
+     * Request Backend Resource by HTTP Typae GET.
+     */
+    HttpService.prototype.get = function (url) {
+        return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
+    };
     /**
      * Error Handler
      */
     HttpService.prototype.handleError = function (error) {
         this.notificationService.error("HTTP Fehler", "Überprüfen Sie Ihre Internetverbindung.");
-        return Promise.reject(error.message || error);
+        return null;
     };
     HttpService = __decorate([
         core_1.Injectable(), 

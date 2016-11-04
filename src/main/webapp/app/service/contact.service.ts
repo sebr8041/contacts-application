@@ -10,37 +10,27 @@ import 'rxjs/add/operator/map'
 export class ContactsService extends HttpService {
 
     /**
-     * Autowire 
-     */
-    constructor(_http: Http, _notificationService: NotificationsService) {
-        super(_http, _notificationService);
+     * Autowire Services
+     * TODO: this constructor sucks.
+    */
+    constructor(http: Http,
+        notificationService: NotificationsService) {
+        super(http, notificationService);
     }
+
 
     /**
      * Returns a List of all Contacts.
      */
-    public get(): Observable<Contact[]> {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
-            headers: headers
-        }).map((response) => response.json() as Contact[]);
+    public getAll(): Observable<Contact[]> {
+        return this.get("contacts.json").map((response) => response.json() as Contact[]);
     }
 
     /**
-     * Returns a List of all Contacts.
+     * Returns one contact by id. 
      */
     public find(id: string): Observable<Response> {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get("http://localhost:3000/rest_stubs/contacts.json", {
-            headers: headers
-        });
-        //.ap(response => response.json() as Contact);
-        /** return this.http.get("http://localhost:3000/rest_stubs/one_contact.json")
-             .toPromise()
-             .then(response => response.json() as Contact)
-             .catch(this.handleError); */
+        return this.get("contacts.json");
     }
 
 } 

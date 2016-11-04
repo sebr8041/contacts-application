@@ -7,7 +7,7 @@
         "category": {
             "id": "hashbums",
             "name": "qwrf",
-            "color": "darkgreen"
+            "color": "red"
         },
         "mails": [
             "mail1@xyz.de",
@@ -42,7 +42,7 @@
         "category": {
             "id": "hashbums",
             "name": "qwrf",
-            "color": "darkgreen"
+            "color": "blue"
         },
         "mails": [
             "mail1@xyz.de",
@@ -77,7 +77,7 @@
         "category": {
             "id": "hashbums",
             "name": "qwrf",
-            "color": "darkgreen"
+            "color": "black"
         },
         "mails": [
             "mail1@xyz.de",

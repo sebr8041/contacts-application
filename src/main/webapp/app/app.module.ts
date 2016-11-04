@@ -15,7 +15,7 @@ import { EditContactsComponent } from './contacts/editcontacts.component';
 import { ListContactsComponent } from './contacts/listcontacts.component';
 import { ImportContactsComponent } from './contacts/importcontacts.component';
 import { ShowContactsComponent } from './contacts/showcontacts.component';
-
+import { FulltextFilterPipe } from './pipes/fulltextfilter.pipe';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpModule } from '@angular/http';
 @NgModule({
@@ -59,6 +59,7 @@ import { HttpModule } from '@angular/http';
     ListContactsComponent,
     ImportContactsComponent,
     ShowContactsComponent,
+    FulltextFilterPipe
   ],
   bootstrap: [AppComponent],
 
