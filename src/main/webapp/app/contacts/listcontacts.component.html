@@ -4,16 +4,46 @@
 		<h3 class="panel-title">Kontakte</h3>
 	</div>
 	<div class="panel-body">
-		<p>Im folgenden werden alle Kontakte aufgelistet. Sie haben die Möglichkeit die Kontakte anzuzeigen(
-			<span class="glyphicon glyphicon-search"></span>), zu bearbeiten (<span class="glyphicon glyphicon-pencil"></span>) oder
-			zu löschen(<span class="glyphicon glyphicon-trash"></span>)</p>
+
 		<div class="row form-group">
-			<div class="col-md-3 col-sm-6">
-				<button class="btn btn-primary">Kategoriefilter</button>
+			<div class="col-md-9">
+				<p>Im folgenden werden alle Kontakte aufgelistet. Sie haben die Möglichkeit die Kontakte anzuzeigen(
+					<span class="glyphicon glyphicon-search"></span>), zu bearbeiten (<span class="glyphicon glyphicon-pencil"></span>)
+					oder zu löschen(<span class="glyphicon glyphicon-trash"></span>)</p>
 			</div>
-			<div class="col-md-offset-6 col-md-3 col-sm-6">
+			<div class="col-md-3">
 				<label>Volltextsuche</label>
 				<input type="text" #fulltextsearch (keyup)="0" class="form-control">
+			</div>
+		</div>
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#kategorieFilter" aria-expanded="false" aria-controls="kategorieFilter">
+						Kategoriefilter
+						</a>
+					</h4>
+				</div>
+				<div id="kategorieFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col col-md-12">
+								<div class="btn-group" data-toggle="buttons">
+									<label (click)="setCategoryFilterOut(true)" class="btn btn-primary active"><input type="radio"  autocomplete="off" checked> Kontakte in der Kategorie anzeigen</label>
+									<label (click)="setCategoryFilterOut(false)" class="btn btn-primary"><input type="radio"  autocomplete="off"> Kontakte die nicht in der Kategorie sind anzeigen</label>
+								</div>
+								<button class="btn btn-danger pull-right" (click)="resetCategoryFilter()">Filter zurücksetzen</button>
+							</div>
+							<hr>
+							<div *ngFor="let category of categorys" class="col col-md-3">
+								<label>
+								<input type="checkbox"> {{category.name}} (<span class="glyphicon glyphicon-stop" [style.color]="category.color"></span>)
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -45,7 +75,7 @@
 				<td>
 					<button routerLink="/contacts/show/1" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 					<button routerLink="/contacts/edit/1" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-					<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+					<button class="btn btn-danger" (click)="deleteContact(contact.id)"><span class="glyphicon glyphicon-trash"></span></button>
 				</td>
 			</tr>
 		</tbody>

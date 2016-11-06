@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Contact } from '../models/contact';
+import { Category } from '../models/category';
 import { HttpService } from './http.service'
 import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class ContactsService extends HttpService {
+export class CategoryService extends HttpService {
 
     /**
      * Autowire Services
@@ -18,19 +18,18 @@ export class ContactsService extends HttpService {
         super(http, notificationService);
     }
 
-
     /**
      * Returns a List of all Contacts.
      */
-    public getAll(): Observable<Contact[]> {
-        return this.get("contacts.json").map((response) => response.json() as Contact[]);
+    public getAll(): Observable<Category[]> {
+        return this.get("categorys.json").map((response) => response.json() as Category[]);
     }
 
     /**
      * Returns one contact by id. 
      */
-    public find(id: string): Observable<Contact> {
-        return this.get("one_contact.json").map((response) => response.json() as Contact); 
+    public find(id: string): Observable<Category> {
+        return this.get("one_category.json").map((response) => response.json() as Category); 
     }
 
 } 

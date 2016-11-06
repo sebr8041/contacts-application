@@ -18,32 +18,32 @@ var http_1 = require('@angular/http');
 var http_service_1 = require('./http.service');
 var angular2_notifications_1 = require('angular2-notifications');
 require('rxjs/add/operator/map');
-var ContactsService = (function (_super) {
-    __extends(ContactsService, _super);
+var CategoryService = (function (_super) {
+    __extends(CategoryService, _super);
     /**
      * Autowire Services
      * TODO: this constructor sucks.
     */
-    function ContactsService(http, notificationService) {
+    function CategoryService(http, notificationService) {
         _super.call(this, http, notificationService);
     }
     /**
      * Returns a List of all Contacts.
      */
-    ContactsService.prototype.getAll = function () {
-        return this.get("contacts.json").map(function (response) { return response.json(); });
+    CategoryService.prototype.getAll = function () {
+        return this.get("categorys.json").map(function (response) { return response.json(); });
     };
     /**
      * Returns one contact by id.
      */
-    ContactsService.prototype.find = function (id) {
-        return this.get("one_contact.json").map(function (response) { return response.json(); });
+    CategoryService.prototype.find = function (id) {
+        return this.get("one_category.json").map(function (response) { return response.json(); });
     };
-    ContactsService = __decorate([
+    CategoryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, angular2_notifications_1.NotificationsService])
-    ], ContactsService);
-    return ContactsService;
+    ], CategoryService);
+    return CategoryService;
 }(http_service_1.HttpService));
-exports.ContactsService = ContactsService;
-//# sourceMappingURL=contact.service.js.map
+exports.CategoryService = CategoryService;
+//# sourceMappingURL=category.service.js.map

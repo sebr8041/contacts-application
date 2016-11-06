@@ -14,7 +14,7 @@ var FulltextFilterPipe = (function () {
         /**
          * Seperator for building all values as a string.
          */
-        this.SEPERATOR = " # ";
+        this.SEPERATOR = " ";
     }
     /**
      * transform method for filter. (need for inteface PipeTransform)

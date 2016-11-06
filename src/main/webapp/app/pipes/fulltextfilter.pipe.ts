@@ -7,7 +7,7 @@ export class FulltextFilterPipe implements PipeTransform {
     /**
      * Seperator for building all values as a string.
      */
-    private readonly SEPERATOR:string = " # ";
+    private readonly SEPERATOR:string = " ";
 
     /**
      * transform method for filter. (need for inteface PipeTransform)

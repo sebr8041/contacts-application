@@ -26,12 +26,16 @@ var showcontacts_component_1 = require('./contacts/showcontacts.component');
 var fulltextfilter_pipe_1 = require('./pipes/fulltextfilter.pipe');
 var angular2_notifications_1 = require('angular2-notifications');
 var http_1 = require('@angular/http');
+var angular2_modal_1 = require('angular2-modal');
+var bootstrap_1 = require('angular2-modal/plugins/bootstrap');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
+                angular2_modal_1.ModalModule.forRoot(),
+                bootstrap_1.BootstrapModalModule,
                 http_1.HttpModule,
                 angular2_notifications_1.SimpleNotificationsModule,
                 router_1.RouterModule.forRoot([

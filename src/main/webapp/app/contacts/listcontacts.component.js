@@ -10,28 +10,84 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var contact_service_1 = require('../service/contact.service');
+var category_service_1 = require('../service/category.service');
+var categoryfilter_1 = require('../models/categoryfilter');
+var angular2_modal_1 = require('angular2-modal');
+var bootstrap_1 = require('angular2-modal/plugins/bootstrap');
+var angular2_notifications_1 = require('angular2-notifications');
 var ListContactsComponent = (function () {
     /**
      * Autowire contactService
      */
-    function ListContactsComponent(contactService) {
+    function ListContactsComponent(contactService, overlay, vcRef, modal, notificationService, categoryService) {
         var _this = this;
         this.contactService = contactService;
+        this.modal = modal;
+        this.notificationService = notificationService;
+        this.categoryService = categoryService;
         /**
          * saves all contacts from backend.
          */
         this.contacts = [];
+        /**
+         * saves all categorys from backend.
+         */
+        this.categorys = [];
+        // container or modals.
+        overlay.defaultViewContainer = vcRef;
+        // load all contacts
         this.contactService.getAll().subscribe(function (contacts) {
             _this.contacts = contacts;
         });
+        // load all categorys 
+        this.categoryService.getAll().subscribe(function (categorys) {
+            _this.categorys = categorys;
+        });
+        this.categoryFilter = new categoryfilter_1.CategoryFilter();
     }
+    /**
+     * Handler delete contact.
+     */
+    ListContactsComponent.prototype.deleteContact = function (id) {
+        var _this = this;
+        // find contact 
+        this.contactService.find(id).subscribe(function (contact) {
+            // user should confirm deleting a contact.
+            _this.modal.confirm()
+                .size('sm')
+                .isBlocking(true)
+                .showClose(true)
+                .keyboard(27)
+                .title('Kontakt löschen')
+                .body('Kontakt "' + contact.name + '" wirklich löschen?')
+                .okBtn('Löschen')
+                .okBtnClass('btn btn-danger')
+                .cancelBtn('Abbrechen')
+                .cancelBtnClass('btn btn-default')
+                .open()
+                .then(function (result) { return result.result; })
+                .then(function (result) {
+                // success
+                _this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
+            }, function (result) {
+                // fail
+            });
+        });
+    };
+    ListContactsComponent.prototype.resetCategoryFilter = function () {
+        this.categoryFilter = new categoryfilter_1.CategoryFilter();
+    };
+    ListContactsComponent.prototype.setCategoryFilterOut = function (filterOut) {
+        this.categoryFilter.filterOut = filterOut;
+        console.log("state", this.categoryFilter.filterOut);
+    };
     ListContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
             templateUrl: 'app/contacts/listcontacts.component.html',
-            providers: [contact_service_1.ContactsService]
+            providers: [contact_service_1.ContactsService, category_service_1.CategoryService]
         }), 
-        __metadata('design:paramtypes', [contact_service_1.ContactsService])
+        __metadata('design:paramtypes', [contact_service_1.ContactsService, angular2_modal_1.Overlay, core_1.ViewContainerRef, bootstrap_1.Modal, angular2_notifications_1.NotificationsService, category_service_1.CategoryService])
     ], ListContactsComponent);
     return ListContactsComponent;
 }());

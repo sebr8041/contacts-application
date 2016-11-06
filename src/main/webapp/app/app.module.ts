@@ -18,8 +18,14 @@ import { ShowContactsComponent } from './contacts/showcontacts.component';
 import { FulltextFilterPipe } from './pipes/fulltextfilter.pipe';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpModule } from '@angular/http';
+
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
 @NgModule({
   imports: [BrowserModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
     HttpModule,
     SimpleNotificationsModule,
     RouterModule.forRoot([
