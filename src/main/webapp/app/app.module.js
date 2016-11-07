@@ -24,8 +24,10 @@ var listcontacts_component_1 = require('./contacts/listcontacts.component');
 var importcontacts_component_1 = require('./contacts/importcontacts.component');
 var showcontacts_component_1 = require('./contacts/showcontacts.component');
 var fulltextfilter_pipe_1 = require('./pipes/fulltextfilter.pipe');
+var categoryfilter_pipe_1 = require('./pipes/categoryfilter.pipe');
 var angular2_notifications_1 = require('angular2-notifications');
 var http_1 = require('@angular/http');
+var forms_1 = require('@angular/forms');
 var angular2_modal_1 = require('angular2-modal');
 var bootstrap_1 = require('angular2-modal/plugins/bootstrap');
 var AppModule = (function () {
@@ -37,6 +39,7 @@ var AppModule = (function () {
                 angular2_modal_1.ModalModule.forRoot(),
                 bootstrap_1.BootstrapModalModule,
                 http_1.HttpModule,
+                forms_1.FormsModule,
                 angular2_notifications_1.SimpleNotificationsModule,
                 router_1.RouterModule.forRoot([
                     // Dashboard
@@ -71,7 +74,8 @@ var AppModule = (function () {
                 listcontacts_component_1.ListContactsComponent,
                 importcontacts_component_1.ImportContactsComponent,
                 showcontacts_component_1.ShowContactsComponent,
-                fulltextfilter_pipe_1.FulltextFilterPipe
+                fulltextfilter_pipe_1.FulltextFilterPipe,
+                categoryfilter_pipe_1.CategoryFilterPipe
             ],
             bootstrap: [app_component_1.AppComponent],
         }), 

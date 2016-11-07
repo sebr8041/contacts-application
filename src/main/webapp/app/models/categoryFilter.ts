@@ -6,26 +6,36 @@ export class CategoryFilter {
     private checkedCategory: Category[];
 
     /**
-     * Filter has category selected?
+     * set default values for object fields
      */
-    public containsCategory(id: string): boolean {
-        this.checkedCategory.forEach((category) => {
-            if (category.id === id) {
+    constructor() {
+        this.checkedCategory = [];
+        this.filterOut = undefined;
+    }
+
+    /**
+     * checks filter model has category
+     */
+    public containsCategory(categoryId: string) {
+        for (let i = 0; i < this.checkedCategory.length; i++) {
+            if (this.checkedCategory[i].id == categoryId) {
                 return true;
             }
-        });
+        }
         return false;
     }
 
-    public addCategory(category: Category) {
-        // push, when not exists.
-        if (!this.containsCategory(category.id)) {
+    /**
+     * add oder delete a category from this filter model.
+     */
+    public changeCategory(category: Category) {
+        if (this.checkedCategory.includes(category)) {
+            let index = this.checkedCategory.indexOf(category);
+            this.checkedCategory.splice(index, 1);
+        } else {
             this.checkedCategory.push(category);
         }
     }
 
-    public removeCategory(category: Category) {
-        if (this.containsCategory(category.id)) {
-        }
-    }
+
 }

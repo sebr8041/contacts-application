@@ -28,17 +28,21 @@
 				<div id="kategorieFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col col-md-12">
-								<div class="btn-group" data-toggle="buttons">
-									<label (click)="setCategoryFilterOut(true)" class="btn btn-primary active"><input type="radio"  autocomplete="off" checked> Kontakte in der Kategorie anzeigen</label>
-									<label (click)="setCategoryFilterOut(false)" class="btn btn-primary"><input type="radio"  autocomplete="off"> Kontakte die nicht in der Kategorie sind anzeigen</label>
-								</div>
+							<div class="col col-md-4">
+								<label><input type="radio" [value]="1" [checked]="categoryFilter.filterOut==1" [(ngModel)]="categoryFilter.filterOut" autocomplete="off" checked> Kontakte in der Kategorie anzeigen</label><br>
+
+							</div>
+							<div class="col col-md-6">
+								<label><input type="radio"  [value]="0" [checked]="categoryFilter.filterOut==0" [(ngModel)]="categoryFilter.filterOut" autocomplete="off"> Kontakte die nicht in der Kategorie sind anzeigen</label>
+							</div>
+							<div class="col col-md-2">
 								<button class="btn btn-danger pull-right" (click)="resetCategoryFilter()">Filter zurücksetzen</button>
 							</div>
-							<hr>
-							<div *ngFor="let category of categorys" class="col col-md-3">
+						</div>
+						<div class="row">
+							<div *ngFor="let category of categorys; let i = index;" class="col col-md-3">
 								<label>
-								<input type="checkbox"> {{category.name}} (<span class="glyphicon glyphicon-stop" [style.color]="category.color"></span>)
+								<input type="checkbox" [(ngModel)]="checkedCategory[i]" (click)="categoryFilter.changeCategory(category)" > {{category.name}} (<span class="glyphicon glyphicon-stop" [style.color]="category.color"></span>)
 								</label>
 							</div>
 						</div>
@@ -60,7 +64,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let contact of contacts | fulltextFilter:fulltextsearch.value">
+			<tr *ngFor="let contact of contacts | fulltextFilter:fulltextsearch.value | categoryfilter: categoryFilter">
 				<td>
 					<a routerLink="/contacts/show/{{contact.id}}">{{contact.name}}</a>
 				</td>

@@ -7,11 +7,12 @@ import { CategoryFilter } from '../models/categoryfilter';
 import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import { NotificationsService } from 'angular2-notifications';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'contacts-application',
     templateUrl: 'app/contacts/listcontacts.component.html',
-    providers: [ContactsService, CategoryService]
+    providers: [ContactsService, CategoryService],
 })
 export class ListContactsComponent {
 
@@ -28,7 +29,7 @@ export class ListContactsComponent {
 
     private categoryFilter: CategoryFilter;
 
-
+    private checkedCategory: boolean[];
     /**
      * Autowire contactService
      */
@@ -41,6 +42,9 @@ export class ListContactsComponent {
         // container or modals.
         overlay.defaultViewContainer = vcRef;
 
+        this.checkedCategory = [];
+        this.categoryFilter = new CategoryFilter();
+
         // load all contacts
         this.contactService.getAll().subscribe((contacts) => {
             this.contacts = contacts;
@@ -49,9 +53,16 @@ export class ListContactsComponent {
         // load all categorys 
         this.categoryService.getAll().subscribe((categorys) => {
             this.categorys = categorys;
+            this.resetCheckboxes();
         });
 
-        this.categoryFilter = new CategoryFilter();
+    }
+
+    private resetCheckboxes() {
+        this.checkedCategory = [];
+        for (let i = 0; i < this.categorys.length; i++) {
+            this.checkedCategory.push(false);
+        }
     }
 
     /**
@@ -83,12 +94,7 @@ export class ListContactsComponent {
         });
     }
     public resetCategoryFilter() {
+        this.resetCheckboxes();
         this.categoryFilter = new CategoryFilter();
     }
-
-    public setCategoryFilterOut(filterOut:boolean){
-        this.categoryFilter.filterOut = filterOut;
-        console.log("state", this.categoryFilter.filterOut);
-    }
-
 } 
