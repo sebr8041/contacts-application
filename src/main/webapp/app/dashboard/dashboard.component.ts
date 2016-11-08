@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NotificationsService } from 'angular2-notifications';
 import { ContactsService } from '../service/contact.service';
-import { Contact } from '../models/contact';
+import { IContact } from '../models/contact';
 
 /**
  * Component for GUI-Page "Dashboard"
@@ -32,7 +32,7 @@ export class DashboardComponent {
     /**
      * list of all contacts
      */
-    private contacts: Contact[];
+    private contacts: IContact[];
 
     /**
      * gui-list for all companys.
@@ -52,7 +52,7 @@ export class DashboardComponent {
     /**
      * gui-list for all birthdays which are between startDate and endDate.
      */
-    private birthdayList: Contact[];
+    private birthdayList: IContact[];
 
     /**
      * constructor to autowire services.
@@ -125,7 +125,7 @@ export class DashboardComponent {
             });
 
             // sort birthdayList
-            this.birthdayList.sort((a: Contact, b: Contact) => {
+            this.birthdayList.sort((a: IContact, b: IContact) => {
                 // get dates from contacts and reset year.
                 let dateA = new Date(Date.parse(a.dateOfBirth));
                 dateA.setFullYear((new Date()).getFullYear());

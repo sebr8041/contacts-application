@@ -2,7 +2,6 @@ package de.uniluebeck.sse.contact.application.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
-import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
@@ -21,11 +20,11 @@ public class Contact {
     @NotBlank
     private String company;
     @NotNull
-    private Address[] addresses;
+    private String[] addresses;
     @NotNull
-    private String[] phoneNumbers;
+    private String[] phones;
     @NotNull
-    private String[] mails;
+    private String[] emails;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private Date dateOfBirth;
@@ -33,18 +32,20 @@ public class Contact {
     @NotNull
     private Category category;
 
-    public Contact(String id, String name, String company, Address[] addresses, String[] phoneNumbers, String[] mails, Date dateOfBirth, Category category) {
+    public Contact(String id, String name, String company, String[] addresses, String[] phones, String[] emails, Date dateOfBirth, Category category) {
         this.id = id;
         this.name = name;
         this.company = company;
         this.addresses = addresses;
-        this.phoneNumbers = phoneNumbers;
-        this.mails = mails;
+        this.phones = phones;
+        this.emails = emails;
         this.dateOfBirth = dateOfBirth;
         this.category = category;
     }
 
-    public Contact() {
+   
+    public Contact(){
+        
     }
 
     public String getId() {
@@ -71,28 +72,28 @@ public class Contact {
         this.company = company;
     }
 
-    public Address[] getAddresses() {
+    public String[] getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Address[] addresses) {
+    public void setAddresses(String[] addresses) {
         this.addresses = addresses;
     }
 
-    public String[] getPhoneNumbers() {
-        return phoneNumbers;
+    public String[] getPhones() {
+        return phones;
     }
 
-    public void setPhoneNumbers(String[] phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
+    public void setPhones(String[] phones) {
+        this.phones = phones;
     }
 
-    public String[] getMails() {
-        return mails;
+    public String[] getEmails() {
+        return emails;
     }
 
-    public void setMails(String[] mails) {
-        this.mails = mails;
+    public void setEmails(String[] emails) {
+        this.emails = emails;
     }
 
     public Date getDateOfBirth() {
@@ -110,6 +111,7 @@ public class Contact {
     public void setCategory(Category category) {
         this.category = category;
     }
-
+    
+    
     
 }

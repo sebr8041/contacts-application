@@ -1,9 +1,9 @@
-import { Category } from './category';
+import { ICategory } from './category';
 export class CategoryFilter {
     // contacts with matching categorys filterOut ?
     public filterOut: boolean;
     // selected categorys.
-    private checkedCategory: Category[];
+    private checkedCategory: ICategory[];
 
     /**
      * set default values for object fields
@@ -28,7 +28,7 @@ export class CategoryFilter {
     /**
      * add oder delete a category from this filter model.
      */
-    public changeCategory(category: Category) {
+    public changeCategory(category: ICategory) {
         if (this.checkedCategory.includes(category)) {
             let index = this.checkedCategory.indexOf(category);
             this.checkedCategory.splice(index, 1);

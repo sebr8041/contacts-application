@@ -1,9 +1,7 @@
 package de.uniluebeck.sse.contact.application.models;
 
-import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  *

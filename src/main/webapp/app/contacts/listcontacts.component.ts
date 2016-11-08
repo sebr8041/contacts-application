@@ -1,8 +1,8 @@
 import { Component, ViewContainerRef, ViewEncapsulation } from "@angular/core";
 import { ContactsService } from '../service/contact.service';
 import { CategoryService } from '../service/category.service';
-import { Contact } from '../models/contact';
-import { Category } from '../models/category';
+import { IContact } from '../models/contact';
+import { ICategory } from '../models/category';
 import { CategoryFilter } from '../models/categoryfilter';
 import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
@@ -19,13 +19,13 @@ export class ListContactsComponent {
     /**
      * saves all contacts from backend.
      */
-    private contacts: Contact[] = [];
+    private contacts: IContact[] = [];
 
 
     /**
      * saves all categorys from backend.
      */
-    private categorys: Category[] = [];
+    private categorys: ICategory[] = [];
 
     private categoryFilter: CategoryFilter;
 
