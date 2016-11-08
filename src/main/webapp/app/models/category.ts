@@ -1,5 +1,12 @@
+import {IContact} from "./contact";
+
 export class Category {
-    id: string;
-    name: string;
-    color: string;
+
+}
+
+export interface ICategory {
+    id: string
+    name: string
+    color: string
+    contacts: IContact[]
 }

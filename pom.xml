@@ -163,6 +163,7 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- repacke spring to build runnable jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -182,7 +183,7 @@
                 <executions>
                     <execution>
                         <id>exec-gen-sources</id>
-                        <phase>generate-sources</phase>
+                        <phase>verify</phase>
                         <configuration>
                             <target name="Build Web">
                                 <exec executable="cmd" dir="${project.basedir}/src/main/webapp/"
@@ -197,55 +198,6 @@
                     </execution>
                 </executions>
             </plugin>
-            
-            
-            
-            
-            
-            
-            <!--            <plugin>
-                <groupId>pl.allegro</groupId>
-                <artifactId>grunt-maven-plugin</artifactId>
-                <version>1.5.0</version>
-                <configuration>
-                                        relative to src/main/webapp/, default: static 
-                    <jsSourceDirectory>src/main/webapp/</jsSourceDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>create-resources</goal>
-                            <goal>npm</goal>
-                            <goal>bower</goal>
-                            <goal>grunt</goal>
-                        </goals>
-                        <phase>validate</phase>
-                    </execution>
-                </executions>
-            </plugin>-->
-            
-            
-            
-            
-            <!--            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>exec-npm-install</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
         </plugins>
     </build>
     

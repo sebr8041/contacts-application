@@ -26,4 +26,4 @@ var CategoryFilter = (function () {
     return CategoryFilter;
 }());
 exports.CategoryFilter = CategoryFilter;
-//# sourceMappingURL=categoryFilter.js.map
+//# sourceMappingURL=categoryfilter.js.map

@@ -1,8 +1,11 @@
-package de.uniluebeck.sse.contact.application.ressources;
+package de.uniluebeck.sse.contact.application.resources;
 
+import de.uniluebeck.sse.contact.application.models.Category;
 import de.uniluebeck.sse.contact.application.models.Contact;
+import de.uniluebeck.sse.contact.application.repository.CategoryRepository;
 import de.uniluebeck.sse.contact.application.repository.ContactRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,46 +17,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- * RestController for Contacts
- * </p>
- * 
+ *
  * @author Daniel Rickert
  */
 @CrossOrigin
 @RestController
-@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, value = "/api/contact")
-public class ContactResource {
-
+@RequestMapping(value = "/api/category", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public class CategoryResource {
     @Autowired
-    private ContactRepository contactRepository;
+    private CategoryRepository categoryRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Contact> getAllContacts() {
-        return contactRepository.findAll();
+    public List<Category> getAllCategoriess() {
+        return categoryRepository.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public Contact getById(@PathVariable("id") final String id) {
+    public Category getById(@PathVariable("id") final String id) {
         Validate.notBlank(id);
-        return contactRepository.findOne(id);
+        return categoryRepository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Contact addNewContact(@RequestBody final Contact contact) {
-        Validate.notNull(contact);
-        return contactRepository.insert(contact);
+    public Category addNewCategoryt(@RequestBody @Valid Category category) {
+        Validate.notNull(category);
+        return categoryRepository.insert(category);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Contact updateContext(@RequestBody final Contact contact) {
-        Validate.notNull(contact);
-        return contactRepository.save(contact);
+    public Category updateContext(@RequestBody @Valid Category category) {
+        Validate.notNull(category);
+        return categoryRepository.save(category);
     }
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public void deleteContact(@PathVariable("id") final String id) {
-        contactRepository.delete(id);
-        // TODO add logic to remove contact from all of its companies!
+    public void deleteCategory(@PathVariable("id") final String id) {
+        categoryRepository.delete(id);
     }
 }

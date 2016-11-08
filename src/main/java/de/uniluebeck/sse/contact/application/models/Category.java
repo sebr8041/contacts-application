@@ -1,6 +1,7 @@
 package de.uniluebeck.sse.contact.application.models;
 
 import java.util.List;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -12,33 +13,34 @@ public class Category {
 
     @Id
     private String id;
+    @NotBlank
+    private String name;
+    @NotBlank
     private String color;
-    @DBRef
-    private List<Contact> contacts;
+
+    public Category(String id, String name, String color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
 
     public Category() {
     }
 
-    public Category(String id, String color, List<Contact> contacts) {
-        this.id = id;
-        this.color = color;
-        this.contacts = contacts;
-    }
-    
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
-    }
-    
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getColor() {
@@ -48,6 +50,4 @@ public class Category {
     public void setColor(String color) {
         this.color = color;
     }
-    
-    
 }
