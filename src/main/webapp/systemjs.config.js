@@ -6,12 +6,12 @@
   System.config({
     paths: {
       // paths serve as alias
-      'npm:': 'node_modules/'
+      'npm:': '/node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
-      app: 'app',
+      app: '/app',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -24,14 +24,14 @@
       // other libraries
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-      'angular2-notifications': 'node_modules/angular2-notifications',
-      'angular2-modal': 'node_modules/angular2-modal',
-      'angular2-modal/plugins/bootstrap': 'node_modules/angular2-modal/bundles'
+      'angular2-notifications': 'npm:angular2-notifications',
+      'angular2-modal': 'npm:angular2-modal',
+      'angular2-modal/plugins/bootstrap': 'npm:angular2-modal/bundles',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
-        main: './main.js',
+        main: 'main.js',
         defaultExtension: 'js'
       },
       rxjs: {
@@ -49,10 +49,10 @@
         defaultExtension: 'js',
         main: 'bundles/angular2-modal.umd'
       },
-      'angular2-modal/plugins/bootstrap' : {
-        defaultExtension: 'js', 
-        main: `angular2-modal.bootstrap.umd` 
-      }
+      'angular2-modal/plugins/bootstrap': {
+        defaultExtension: 'js',
+        main: `angular2-modal.bootstrap.umd`
+      },
     }
   });
 })(this);

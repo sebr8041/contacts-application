@@ -16,9 +16,10 @@ import { ListContactsComponent } from './contacts/listcontacts.component';
 import { ImportContactsComponent } from './contacts/importcontacts.component';
 import { ShowContactsComponent } from './contacts/showcontacts.component';
 import { FulltextFilterPipe } from './pipes/fulltextfilter.pipe';
+import { CategoryFilterPipe } from './pipes/categoryfilter.pipe';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpModule } from '@angular/http';
-
+import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
@@ -27,6 +28,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
     ModalModule.forRoot(),
     BootstrapModalModule,
     HttpModule,
+    FormsModule,
     SimpleNotificationsModule,
     RouterModule.forRoot([
       // Dashboard
@@ -65,7 +67,8 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
     ListContactsComponent,
     ImportContactsComponent,
     ShowContactsComponent,
-    FulltextFilterPipe
+    FulltextFilterPipe,
+    CategoryFilterPipe
   ],
   bootstrap: [AppComponent],
 

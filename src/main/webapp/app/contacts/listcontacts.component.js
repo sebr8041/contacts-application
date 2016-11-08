@@ -35,6 +35,8 @@ var ListContactsComponent = (function () {
         this.categorys = [];
         // container or modals.
         overlay.defaultViewContainer = vcRef;
+        this.checkedCategory = [];
+        this.categoryFilter = new categoryfilter_1.CategoryFilter();
         // load all contacts
         this.contactService.getAll().subscribe(function (contacts) {
             _this.contacts = contacts;
@@ -42,9 +44,15 @@ var ListContactsComponent = (function () {
         // load all categorys 
         this.categoryService.getAll().subscribe(function (categorys) {
             _this.categorys = categorys;
+            _this.resetCheckboxes();
         });
-        this.categoryFilter = new categoryfilter_1.CategoryFilter();
     }
+    ListContactsComponent.prototype.resetCheckboxes = function () {
+        this.checkedCategory = [];
+        for (var i = 0; i < this.categorys.length; i++) {
+            this.checkedCategory.push(false);
+        }
+    };
     /**
      * Handler delete contact.
      */
@@ -75,17 +83,14 @@ var ListContactsComponent = (function () {
         });
     };
     ListContactsComponent.prototype.resetCategoryFilter = function () {
+        this.resetCheckboxes();
         this.categoryFilter = new categoryfilter_1.CategoryFilter();
-    };
-    ListContactsComponent.prototype.setCategoryFilterOut = function (filterOut) {
-        this.categoryFilter.filterOut = filterOut;
-        console.log("state", this.categoryFilter.filterOut);
     };
     ListContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
             templateUrl: 'app/contacts/listcontacts.component.html',
-            providers: [contact_service_1.ContactsService, category_service_1.CategoryService]
+            providers: [contact_service_1.ContactsService, category_service_1.CategoryService],
         }), 
         __metadata('design:paramtypes', [contact_service_1.ContactsService, angular2_modal_1.Overlay, core_1.ViewContainerRef, bootstrap_1.Modal, angular2_notifications_1.NotificationsService, category_service_1.CategoryService])
     ], ListContactsComponent);

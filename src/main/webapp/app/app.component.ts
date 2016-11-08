@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestComponent } from './test.component';
+
 @Component({
   selector: 'contacts-application',
   templateUrl: 'app/app.component.html',

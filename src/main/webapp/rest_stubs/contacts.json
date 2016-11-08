@@ -5,8 +5,8 @@
         "company": "Brodersen & Rickert Webdesign GbR",
         "dateOfBirth": "1993-11-05",
         "category": {
-            "id": "hashbums",
-            "name": "qwrf",
+            "id": "1",
+            "name": "Kategorie 1",
             "color": "red"
         },
         "mails": [
@@ -40,8 +40,8 @@
         "company": "Brodersen & Rickert Webdesign GbR",
         "dateOfBirth": "1998-11-03",
         "category": {
-            "id": "hashbums",
-            "name": "qwrf",
+            "id": "2",
+            "name": "Kategorie 2",
             "color": "blue"
         },
         "mails": [
@@ -75,8 +75,8 @@
         "company": "Dings Bums GbR",
         "dateOfBirth": "1990-11-11",
         "category": {
-            "id": "hashbums",
-            "name": "qwrf",
+            "id": "3",
+            "name": "Kategorie 3",
             "color": "black"
         },
         "mails": [
