@@ -189,6 +189,7 @@
                                 <exec executable="cmd" dir="${project.basedir}/src/main/webapp/"
                           failonerror="true" osfamily="windows">
                                     <arg line="/c npm install" />
+                                    <arg line="/c npm run build" />
                                 </exec>
                             </target>
                         </configuration>

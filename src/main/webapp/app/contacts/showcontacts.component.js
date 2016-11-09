@@ -15,13 +15,7 @@ var ShowContactsComponent = (function () {
     function ShowContactsComponent(contactsService, route) {
         this.contactsService = contactsService;
         this.route = route;
-        //  this.contactsService.find("1").then((contact) => { this.contact = contact; console.log(contact) });
-        this.contactsService.get().then(function (contatcs) { return console.log("hier", contatcs); });
     }
-    ShowContactsComponent.prototype.resolve = function (route) {
-        console.log(this);
-        return this.contactsService.find("1");
-    };
     ShowContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',

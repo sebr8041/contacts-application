@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs/Rx';
-import{ RequestOptionsArgs, Headers} from '@angular/http';
+import { RequestOptionsArgs, Headers } from '@angular/http';
 
 /**
  * HttpService handles errors and autowire 
@@ -13,14 +13,15 @@ export abstract class HttpService {
     /**
      * base url for backend api
      */
-    private readonly API_BASE_URL : string = "http://localhost:1337/api/";
+    private readonly API_BASE_URL: string = "http://localhost:1337/api/";
 
     /**
      * Header for each Backend-API request
      */
-    private readonly API_HEADER :  RequestOptionsArgs = {
+    private readonly API_HEADER: RequestOptionsArgs = {
         headers: (new Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json; charset=utf-8'
         }))
     };
 
@@ -34,15 +35,22 @@ export abstract class HttpService {
     /**
      * Request Backend Resource by HTTP Typae GET.
      */
-    protected get(url:string): Observable<Response>{
+    protected get(url: string): Observable<Response> {
         return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
     }
 
     /**
-     * BAckend request to delete element.
+     * Backend request to delete element.
      */
-    protected delete(url:string): Observable<Response>{
-        return this.http.delete(this.API_BASE_URL + url,this.API_HEADER);
+    protected delete(url: string): Observable<Response> {
+        return this.http.delete(this.API_BASE_URL + url, this.API_HEADER);
+    }
+
+    /**
+     * Backend Request for post element.
+     */
+    protected post(url: string, data: any): Observable<Response> {
+        return this.http.post(this.API_BASE_URL + url, "{}", this.API_HEADER);
     }
 
     /**

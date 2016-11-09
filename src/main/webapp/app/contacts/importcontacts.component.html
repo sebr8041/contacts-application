@@ -5,8 +5,8 @@
 	<div class="panel-body">
 		<p>Hier können Sie JSON Kontakt-Daten importieren. Fügen Sie hierzu die JSON Daten im folgenden Testfeld ein:</p>
 		<div class="form-group">
-			<textarea class="form-control" style="height:400px;  resize: none;"></textarea>
+			<textarea class="form-control" [(ngModel)]="jsonData" style="height:400px;  resize: none;"></textarea>
 		</div>
-		<button class="btn btn-lg btn-primary pull-right"><span class="glyphicon glyphicon-cloud-upload"></span> Importieren</button>
+		<button (click)="startImport(jsonData)" class="btn btn-lg btn-primary pull-right"><span class="glyphicon glyphicon-cloud-upload"></span> Importieren</button>
 	</div>
 </div>

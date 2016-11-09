@@ -31,7 +31,8 @@ var HttpService = (function () {
          */
         this.API_HEADER = {
             headers: (new http_2.Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json; charset=utf-8'
             }))
         };
     }
@@ -42,10 +43,16 @@ var HttpService = (function () {
         return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
     };
     /**
-     * BAckend request to delete element.
+     * Backend request to delete element.
      */
     HttpService.prototype.delete = function (url) {
         return this.http.delete(this.API_BASE_URL + url, this.API_HEADER);
+    };
+    /**
+     * Backend Request for post element.
+     */
+    HttpService.prototype.post = function (url, data) {
+        return this.http.post(this.API_BASE_URL + url, "{}", this.API_HEADER);
     };
     /**
      * Error Handler

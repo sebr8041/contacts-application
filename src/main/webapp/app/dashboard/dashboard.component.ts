@@ -18,7 +18,7 @@ export class DashboardComponent {
      * range for birthdays
      */
     private readonly BIRTHDAY_RANGE_IN_DAYS: number = 10;
-
+     
     /**
      * gui-notification service
      */

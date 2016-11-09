@@ -31,7 +31,7 @@ public class ImportJsonResource {
     private CategoryRepository categoryRepository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void importJson(@RequestBody @Valid final ImportModel importModel) {
+    public String importJson(@RequestBody @Valid final ImportModel importModel) {
 
         Map<Integer, Category> map = new HashMap<>();
         importModel.getCategories().stream().forEach(category -> map.put(category.getImportId(), categoryRepository.save(new Category(null, category.getName(), category.getColor()))));
@@ -48,6 +48,8 @@ public class ImportJsonResource {
                             map.get(contact.getCategoryId()))
             );
         });
+        
+        return "blub";
 
     }
 }

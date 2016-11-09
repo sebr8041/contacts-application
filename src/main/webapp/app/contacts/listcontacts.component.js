@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var contact_service_1 = require('../service/contact.service');
 var category_service_1 = require('../service/category.service');
-var categoryfilter_1 = require('../models/categoryfilter');
+var categoryFilter_1 = require('../models/categoryFilter');
 var angular2_modal_1 = require('angular2-modal');
 var bootstrap_1 = require('angular2-modal/plugins/bootstrap');
 var angular2_notifications_1 = require('angular2-notifications');
@@ -36,7 +36,7 @@ var ListContactsComponent = (function () {
         // container or modals.
         overlay.defaultViewContainer = vcRef;
         this.checkedCategory = [];
-        this.categoryFilter = new categoryfilter_1.CategoryFilter();
+        this.categoryFilter = new categoryFilter_1.CategoryFilter();
         // load all contacts
         this.contactService.getAll().subscribe(function (contacts) {
             _this.contacts = contacts;
@@ -94,7 +94,7 @@ var ListContactsComponent = (function () {
     };
     ListContactsComponent.prototype.resetCategoryFilter = function () {
         this.resetCheckboxes();
-        this.categoryFilter = new categoryfilter_1.CategoryFilter();
+        this.categoryFilter = new categoryFilter_1.CategoryFilter();
     };
     ListContactsComponent = __decorate([
         core_1.Component({

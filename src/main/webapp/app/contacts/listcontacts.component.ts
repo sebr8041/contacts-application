@@ -3,7 +3,7 @@ import { ContactsService } from '../service/contact.service';
 import { CategoryService } from '../service/category.service';
 import { IContact } from '../models/contact';
 import { ICategory } from '../models/category';
-import { CategoryFilter } from '../models/categoryfilter';
+import { CategoryFilter } from '../models/categoryFilter';
 import { Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import { NotificationsService } from 'angular2-notifications';
