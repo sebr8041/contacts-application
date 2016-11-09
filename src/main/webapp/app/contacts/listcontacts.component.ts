@@ -86,13 +86,25 @@ export class ListContactsComponent {
                 .open()
                 .then((result) => result.result)
                 .then((result) => {
-                    // success
-                    this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
+                    this.contactService.remove(contact.id).subscribe((result) => {
+                        this.deleteContactFromLocaleArray(contact.id);
+                        this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
+                    });
                 }, (result) => {
                     // fail
                 })
         });
     }
+
+
+    private deleteContactFromLocaleArray(id:string){
+        this.contacts.forEach((contact,index) => {
+            if(contact.id === id){
+                this.contacts.splice(index, 1);
+            }
+        });
+    }
+
     public resetCategoryFilter() {
         this.resetCheckboxes();
         this.categoryFilter = new CategoryFilter();

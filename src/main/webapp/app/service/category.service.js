@@ -31,13 +31,13 @@ var CategoryService = (function (_super) {
      * Returns a List of all Contacts.
      */
     CategoryService.prototype.getAll = function () {
-        return this.get("categorys.json").map(function (response) { return response.json(); });
+        return this.get("category").map(function (response) { return response.json(); });
     };
     /**
      * Returns one contact by id.
      */
     CategoryService.prototype.find = function (id) {
-        return this.get("one_category.json").map(function (response) { return response.json(); });
+        return this.get("category/" + id).map(function (response) { return response.json(); });
     };
     CategoryService = __decorate([
         core_1.Injectable(), 

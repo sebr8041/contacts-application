@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Contact } from '../models/contact';
+import { IContact } from '../models/contact';
 import { HttpService } from './http.service'
 import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/map'
@@ -19,18 +19,26 @@ export class ContactsService extends HttpService {
     }
 
 
+
     /**
      * Returns a List of all Contacts.
      */
-    public getAll(): Observable<Contact[]> {
-        return this.get("contacts.json").map((response) => response.json() as Contact[]);
+    public getAll(): Observable<IContact[]> {
+        return this.get("contact").map((response) => response.json() as IContact[]);
     }
 
     /**
      * Returns one contact by id. 
      */
-    public find(id: string): Observable<Contact> {
-        return this.get("one_contact.json").map((response) => response.json() as Contact); 
+    public find(id: string): Observable<IContact> {
+        return this.get("contact/" + id).map((response) => response.json() as IContact); 
+    }
+
+    /**
+     * Delete contact by id.
+     */
+    public remove(id:string): Observable<Response>{
+        return this.delete("contact/"+id);
     }
 
 } 

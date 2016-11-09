@@ -25,7 +25,7 @@ var HttpService = (function () {
         /**
          * base url for backend api
          */
-        this.API_BASE_URL = "http://localhost:3000/rest_stubs/";
+        this.API_BASE_URL = "http://localhost:1337/api/";
         /**
          * Header for each Backend-API request
          */
@@ -40,6 +40,12 @@ var HttpService = (function () {
      */
     HttpService.prototype.get = function (url) {
         return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
+    };
+    /**
+     * BAckend request to delete element.
+     */
+    HttpService.prototype.delete = function (url) {
+        return this.http.delete(this.API_BASE_URL + url, this.API_HEADER);
     };
     /**
      * Error Handler

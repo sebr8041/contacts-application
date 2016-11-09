@@ -31,13 +31,19 @@ var ContactsService = (function (_super) {
      * Returns a List of all Contacts.
      */
     ContactsService.prototype.getAll = function () {
-        return this.get("contacts.json").map(function (response) { return response.json(); });
+        return this.get("contact").map(function (response) { return response.json(); });
     };
     /**
      * Returns one contact by id.
      */
     ContactsService.prototype.find = function (id) {
-        return this.get("one_contact.json").map(function (response) { return response.json(); });
+        return this.get("contact/" + id).map(function (response) { return response.json(); });
+    };
+    /**
+     * Delete contact by id.
+     */
+    ContactsService.prototype.remove = function (id) {
+        return this.delete("contact/" + id);
     };
     ContactsService = __decorate([
         core_1.Injectable(), 

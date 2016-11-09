@@ -47,7 +47,8 @@ var FulltextFilterPipe = (function () {
     };
     FulltextFilterPipe = __decorate([
         core_1.Pipe({
-            name: 'fulltextFilter'
+            name: 'fulltextFilter',
+            pure: false
         }), 
         __metadata('design:paramtypes', [])
     ], FulltextFilterPipe);

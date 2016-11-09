@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Category } from '../models/category';
+import { ICategory } from '../models/category';
 import { HttpService } from './http.service'
 import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/map'
@@ -21,15 +21,17 @@ export class CategoryService extends HttpService {
     /**
      * Returns a List of all Contacts.
      */
-    public getAll(): Observable<Category[]> {
-        return this.get("categorys.json").map((response) => response.json() as Category[]);
+    public getAll(): Observable<ICategory[]> {
+        return this.get("category").map((response) => response.json() as ICategory[]);
     }
 
     /**
      * Returns one contact by id. 
      */
-    public find(id: string): Observable<Category> {
-        return this.get("one_category.json").map((response) => response.json() as Category); 
+    public find(id: string): Observable<ICategory> {
+        return this.get("category/" + id).map((response) => response.json() as ICategory); 
     }
+
+
 
 } 

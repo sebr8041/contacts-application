@@ -75,11 +75,21 @@ var ListContactsComponent = (function () {
                 .open()
                 .then(function (result) { return result.result; })
                 .then(function (result) {
-                // success
-                _this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
+                _this.contactService.remove(contact.id).subscribe(function (result) {
+                    _this.deleteContactFromLocaleArray(contact.id);
+                    _this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
+                });
             }, function (result) {
                 // fail
             });
+        });
+    };
+    ListContactsComponent.prototype.deleteContactFromLocaleArray = function (id) {
+        var _this = this;
+        this.contacts.forEach(function (contact, index) {
+            if (contact.id === id) {
+                _this.contacts.splice(index, 1);
+            }
         });
     };
     ListContactsComponent.prototype.resetCategoryFilter = function () {

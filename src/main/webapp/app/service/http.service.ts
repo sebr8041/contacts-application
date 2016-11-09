@@ -13,7 +13,7 @@ export abstract class HttpService {
     /**
      * base url for backend api
      */
-    private readonly API_BASE_URL : string = "http://localhost:3000/rest_stubs/";
+    private readonly API_BASE_URL : string = "http://localhost:1337/api/";
 
     /**
      * Header for each Backend-API request
@@ -36,6 +36,13 @@ export abstract class HttpService {
      */
     protected get(url:string): Observable<Response>{
         return this.http.get(this.API_BASE_URL + url, this.API_HEADER);
+    }
+
+    /**
+     * BAckend request to delete element.
+     */
+    protected delete(url:string): Observable<Response>{
+        return this.http.delete(this.API_BASE_URL + url,this.API_HEADER);
     }
 
     /**

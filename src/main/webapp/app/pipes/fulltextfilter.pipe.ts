@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
-    name: 'fulltextFilter'
+    name: 'fulltextFilter',
+    pure: false
 })
 export class FulltextFilterPipe implements PipeTransform {
 
