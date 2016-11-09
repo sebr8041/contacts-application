@@ -50,7 +50,7 @@ export abstract class HttpService {
      * Backend Request for post element.
      */
     protected post(url: string, data: any): Observable<Response> {
-        return this.http.post(this.API_BASE_URL + url, "{}", this.API_HEADER);
+        return this.http.post(this.API_BASE_URL + url, data, this.API_HEADER);
     }
 
     /**

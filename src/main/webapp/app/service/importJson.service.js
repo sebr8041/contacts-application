@@ -31,7 +31,7 @@ var ImportJsonService = (function (_super) {
      * Returns one contact by id.
      */
     ImportJsonService.prototype.import = function (data) {
-        return this.get("import");
+        return this.post("import", data);
     };
     ImportJsonService = __decorate([
         core_1.Injectable(), 

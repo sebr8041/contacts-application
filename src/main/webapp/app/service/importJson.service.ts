@@ -18,14 +18,10 @@ export class ImportJsonService extends HttpService {
         super(http, notificationService);
     }
 
-
-
     /**
      * Returns one contact by id. 
      */
-    public import(data: any): Observable<Response> {
+    public import(data: string): Observable<Response> {
         return this.post("import", data); 
     }
-
-
 } 

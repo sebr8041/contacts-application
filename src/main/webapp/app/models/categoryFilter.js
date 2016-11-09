@@ -33,4 +33,4 @@ var CategoryFilter = (function () {
     return CategoryFilter;
 }());
 exports.CategoryFilter = CategoryFilter;
-//# sourceMappingURL=categoryfilter.js.map
+//# sourceMappingURL=categoryFilter.js.map
