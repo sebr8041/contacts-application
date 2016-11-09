@@ -77,8 +77,8 @@
 				</td>
 				<td>{{contact.dateOfBirth | date: 'dd. MM. yyyy'}}</td>
 				<td>
-					<button routerLink="/contacts/show/1" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-					<button routerLink="/contacts/edit/1" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+					<button routerLink="/contacts/show/{{contact.id}}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+					<button routerLink="/contacts/edit/{{contact.id}}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
 					<button class="btn btn-danger" (click)="deleteContact(contact.id)"><span class="glyphicon glyphicon-trash"></span></button>
 				</td>
 			</tr>

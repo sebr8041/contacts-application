@@ -11,10 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var contact_service_1 = require('../service/contact.service');
 var router_1 = require('@angular/router');
+var angular2_notifications_1 = require('angular2-notifications');
+var router_2 = require('@angular/router');
 var ShowContactsComponent = (function () {
-    function ShowContactsComponent(contactsService, route) {
+    /**
+     * load param from url and ask contactsService to load contact by id.
+     */
+    function ShowContactsComponent(contactsService, route, notificationService, router) {
+        var _this = this;
         this.contactsService = contactsService;
         this.route = route;
+        this.notificationService = notificationService;
+        this.router = router;
+        this.contact = null;
+        this.route.params.subscribe(function (params) {
+            return _this.contactsService.find(params['id']).subscribe(function (contact) {
+                _this.contact = contact;
+            }, function (error) {
+                _this.notificationService.error("Kontakt nicht gefunden.", "Der von Ihnen geöffnete Kontakt wurde nicht gefunden.");
+                _this.router.navigateByUrl('contacts/all');
+            });
+        });
     }
     ShowContactsComponent = __decorate([
         core_1.Component({
@@ -22,7 +39,7 @@ var ShowContactsComponent = (function () {
             templateUrl: 'app/contacts/showcontacts.component.html',
             providers: [contact_service_1.ContactsService]
         }), 
-        __metadata('design:paramtypes', [contact_service_1.ContactsService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [contact_service_1.ContactsService, router_1.ActivatedRoute, angular2_notifications_1.NotificationsService, router_2.Router])
     ], ShowContactsComponent);
     return ShowContactsComponent;
 }());

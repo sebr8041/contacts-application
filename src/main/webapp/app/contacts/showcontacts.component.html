@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="contact !== null && contact !== undefined">
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -9,21 +9,24 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text"  class="form-control">
+							<input type="text" readonly="readonly" [(ngModel)]="contact.name" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>Firma</label>
-							<input readonly="readonly" type="text" class="form-control">
+							<input readonly="readonly" [(ngModel)]="contact.company" type="text" class="form-control">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Kategorie</label>
-							<input readonly="readonly" type="text" class="form-control">
+							<div *ngIf="contact.category !== undefined && contact.category !== null" class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stop" [style.color]="contact.category.color"></span></span>
+								<input readonly="readonly" [(ngModel)]="contact.category.name" aria-describedby="basic-addon1" type="text" class="form-control">
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Geburtstag</label>
-							<input readonly="readonly" type="text" class="form-control">
+							<input readonly="readonly" value="{{contact.dateOfBirth | date: 'dd. MM. yyyy'}}" type="text" class="form-control">
 						</div>
 					</div>
 
@@ -39,57 +42,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="row form-group">
-					<div class="col-md-2">
-						<label>PLZ</label>
-						<input type="text" readonly="readonly" class="form-control">
-					</div>
-					<div class="col-md-3">
-						<label>Ort</label>
-						<input type="text" readonly="readonly" class="form-control">
-					</div>
-					<div class="col-md-4">
-						<label>Straße</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-					<div class="col-md-2">
-						<label>Hausnummer</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-2">
-						<label>PLZ</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-					<div class="col-md-3">
-						<label>Ort</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-					<div class="col-md-4">
-						<label>Straße</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-					<div class="col-md-2">
-						<label>Hausnummer</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-2">
-						<label>PLZ</label>
-						<input type="text"  readonly="readonly"class="form-control">
-					</div>
-					<div class="col-md-3">
-						<label>Ort</label>
-						<input type="text" readonly="readonly" class="form-control">
-					</div>
-					<div class="col-md-4">
-						<label>Straße</label>
-						<input type="text" readonly="readonly" class="form-control">
-					</div>
-					<div class="col-md-2">
-						<label>Hausnummer</label>
-						<input type="text" readonly="readonly" class="form-control">
+					<div class="col-md-4 col-sm-6" *ngFor="let address of contact.addresses; let i = index;">
+						<label>Adresse #{{i+1}}</label>
+						<pre>{{address}}</pre>
 					</div>
 				</div>
 			</div>
@@ -101,17 +56,9 @@
 				<h3 class="panel-title">E-Mail Adresse/n</h3>
 			</div>
 			<div class="panel-body">
-				<div class="form-group">
-					<label>E-Mail Adresse</label>
-					<input readonly="readonly" type="text" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>E-Mail Adresse</label>
-					<input readonly="readonly" type="text" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>E-Mail Adresse</label>
-					<input readonly="readonly" type="text" class="form-control">
+				<div class="form-group" *ngFor="let email of contact.emails; let i = index;">
+					<label>E-Mail Adresse #{{i+1}}</label>
+					<input readonly="readonly" value="{{email}}" type="text" class="form-control">
 				</div>
 			</div>
 		</div>
@@ -122,17 +69,9 @@
 				<h3 class="panel-title">Telefonnummer/n</h3>
 			</div>
 			<div class="panel-body">
-				<div class="form-group">
-					<label>Telefonnummer</label>
-					<input readonly="readonly" type="text" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>Telefonnummer</label>
-					<input readonly="readonly" type="text" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>Telefonnummer</label>
-					<input readonly="readonly" type="text" class="form-control">
+				<div class="form-group" *ngFor="let phone of contact.phones; let i = index;">
+					<label>Telefonnummer #{{i+1}}</label>
+					<input readonly="readonly" value="{{phone}}" type="text" class="form-control">
 				</div>
 			</div>
 		</div>
