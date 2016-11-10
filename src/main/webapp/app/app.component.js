@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var contact_service_1 = require('./service/contact.service');
+var category_service_1 = require('./service/category.service');
 var AppComponent = (function () {
     function AppComponent() {
         this.options = {
@@ -21,6 +23,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'contacts-application',
             templateUrl: 'app/app.component.html',
+            providers: [contact_service_1.ContactsService, category_service_1.CategoryService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

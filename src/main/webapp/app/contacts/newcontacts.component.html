@@ -3,104 +3,86 @@
 		<h3 class="panel-title">Neuer Kontakt</h3>
 	</div>
 	<div class="panel-body">
-		<p>Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:</p>
-		<div class="form-group">
-			<label>Name</label>
-			<input type="text" class="form-control">
+		<div class="col-md-12">
+			<p>Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:</p>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" [(ngModel)]="contact.name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Firma</label>
+						<input [(ngModel)]="contact.company" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Kategorie</label>
+						<select [(ngModel)]="selectedCategoryId" class="form-control">
+							<option value="null">-- Bitte wählen --</option>
+							<option *ngFor="let category of categorys" [(value)]="category.id">{{category.name}}</option>
+					</select>
+					</div>
+					<div class="form-group">
+						<label>Geburtsdatum</label>
+						<input [(ngModel)]="contact.dateOfBirth" type="text" class="form-control">
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Firma</label>
-			<input type="text" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Geburtstag</label>
-			<input type="text" class="form-control">
-		</div>
-		<div class="form-group">
+		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Adresse/n
+				<div class="panel-heading">
+					<h3 class="panel-title">Adresse/n</h3>
 				</div>
 				<div class="panel-body">
 					<div class="row form-group">
-						<div class="col-md-2">
-							<label>PLZ</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-3">
-							<label>Ort</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-4">
-							<label>Straße</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-2">
-							<label>Hausnummer</label>
-							<input type="text" class="form-control">
+						<div class="col-md-4 col-sm-6" *ngFor="let address of contact.addresses; let i = index; trackBy:customTrackBy">
+							<label>Adresse #{{i+1}}</label>
+							<span (click)="removeElement(i, contact.addresses)" class="pull-right glyphicon glyphicon-remove" style="color:red;cursor:pointer;"></span>
+							<textarea [(ngModel)]="contact.addresses[i]" class="form-control" style="resize:none"></textarea>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>PLZ</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-3">
-							<label>Ort</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-4">
-							<label>Straße</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-2">
-							<label>Hausnummer</label>
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Weitere Adresse</button>
+					<button (click)="addNewElement(contact.addresses)" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span>Neue Adresse</button>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">E-Mail Adresse/n
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label>E-Mail Adresse</label>
-								<input type="text" class="form-control">
-							</div>
-							<div class="form-group">
-								<label>E-Mail Adresse</label>
-								<input type="text" class="form-control">
-							</div>
-							<button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span></button>
-						</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">E-Mail Adresse/n
 					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">Telefonnummer/n
+					<div class="panel-body">
+						<div class="form-group" *ngFor="let email of contact.emails; let i = index; trackBy:customTrackBy">
+							<label>E-Mail Adresse #{{i+1}}</label>
+							<span (click)="removeElement(i, contact.emails)" class="pull-right glyphicon glyphicon-remove" style="color:red;cursor:pointer;"></span>
+							<input type="text" [(ngModel)]="contact.emails[i]" class="form-control">
 						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label>Telefonnummer</label>
-								<input type="text" class="form-control">
-							</div>
-							<div class="form-group">
-								<label>Telefonnummer</label>
-								<input type="text" class="form-control">
-							</div>
-							<button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span></button>
-						</div>
+						<button (click)="addNewElement(contact.emails)" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span>Neue E-Mail Adresse</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Speichern</button>
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">Telefonnummer/n
+					</div>
+					<div class="panel-body">
+
+						<div class="form-group" *ngFor="let phone of contact.phones; let i = index; trackBy:customTrackBy">
+							<label>Telefonnummer #{{i+1}}</label>
+							<span (click)="removeElement(i, contact.phones)" class="pull-right glyphicon glyphicon-remove" style="color:red;cursor:pointer;"></span>
+							<input type="text" [(ngModel)]="contact.phones[i]" class="form-control">
+						</div>
+						<button (click)="addNewElement(contact.phones)" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus"></span>Neue Telefonnummer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<button (click)="addContact(contact, selectedCategoryId)" class="btn btn-lg btn-primary pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Speichern</button>
+		</div>
 	</div>
 </div>

@@ -45,6 +45,12 @@ var ContactsService = (function (_super) {
     ContactsService.prototype.remove = function (id) {
         return this.delete("contact/" + id);
     };
+    /**
+    * add a new contact
+    */
+    ContactsService.prototype.add = function (contact) {
+        return this.post("contact", contact);
+    };
     ContactsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, angular2_notifications_1.NotificationsService])

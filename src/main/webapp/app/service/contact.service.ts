@@ -18,8 +18,6 @@ export class ContactsService extends HttpService {
         super(http, notificationService);
     }
 
-
-
     /**
      * Returns a List of all Contacts.
      */
@@ -31,14 +29,21 @@ export class ContactsService extends HttpService {
      * Returns one contact by id. 
      */
     public find(id: string): Observable<IContact> {
-        return this.get("contact/" + id).map((response) => response.json() as IContact); 
+        return this.get("contact/" + id).map((response) => response.json() as IContact);
     }
 
     /**
      * Delete contact by id.
      */
-    public remove(id:string): Observable<Response>{
-        return this.delete("contact/"+id);
+    public remove(id: string): Observable<Response> {
+        return this.delete("contact/" + id);
+    }
+
+    /**
+    * add a new contact
+    */
+    public add(contact: IContact): Observable<Response> {
+        return this.post("contact", contact);
     }
 
 } 
