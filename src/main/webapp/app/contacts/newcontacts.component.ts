@@ -6,92 +6,36 @@ import { IContact, Contact } from '../models/contact';
 import { ICategory, Category } from '../models/category';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NewOrEditContactsComponent } from './neworeditcontacts.component'
 
 @Component({
     selector: 'contacts-application',
-    templateUrl: 'app/contacts/newcontacts.component.html',
+    templateUrl: 'app/contacts/neworeditcontacts.component.html',
 })
-export class NewContactsComponent {
+export class NewContactsComponent extends NewOrEditContactsComponent {
+
+    private readonly PAGE_TITLE:string = "Neuer Kontakt";
+    private readonly PAGE_DESC:string = "Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:";
 
     /**
-     * model for the contact
+     * init clean formular for new contact.
      */
-    private contact: IContact;
-
-    /**
-     * all categories to choose between them.
-     */
-    private categorys: ICategory[] = [];
-
-    /**
-     * model to save all addresses from form.
-     */
-    private addresses: string[] = [];
-
-      /**
-     * model to save all emails from form.
-     */
-    private emails: string[] = [];
-
-      /**
-     * model to save all phones from form.
-     */
-    private phones: string[] = [];
-
-    /**
-     * form group 
-     */
-    private form: FormGroup;
-
-    /**
-     * form submited min one time.
-     */
-    private submitedForm : boolean = false;
-
-    /**
-     * create new contact.
-     */
-    constructor(private notificationService: NotificationsService,
-        private categoryService: CategoryService,
-        private contactService: ContactsService,
-        private router: Router,
+    constructor(notificationService: NotificationsService,
+        categoryService: CategoryService,
+        contactService: ContactsService,
+        router: Router,
         fb: FormBuilder) {
+        // call parent.
+        super(notificationService, categoryService, contactService, router, fb);
 
-        this.categoryService.getAll().subscribe(categorys => this.categorys = categorys);
-
-        this.form = fb.group({
-            'name': [null, Validators.required],
-            'company': [null, Validators.required],
-            'dateOfBirth': [null, Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
-            'category': [null, Validators.pattern("^(?!null$).*$")]
-        });
+        // init clean formular
+        this.initForm(null, null, null, null, [], [], []);
     }
 
     /**
-     * custom track by for loops. dont loses focus 
+     * handler submit form for add NEW contact.
      */
-    public customTrackBy(index: number, obj: any): any {
-        return index;
-    }
-
-    /**
-     * handler to add a new element on phones, emails or addresses
-     */
-    public addNewElement(array: string[]) {
-        array.push("");
-    }
-
-    /**
-     * handler to remove a new element on phones, emails or addresses
-     */
-    public removeElement(index: number, array: string[]) {
-        array.splice(index, 1);
-    }
-
-    /**
-     * handler submit form.
-     */
-    public submitForm(form: FormGroup, emails: string[], addresses: string[], phones: string[]) {
+    protected submitForm(form: FormGroup, emails: string[], addresses: string[], phones: string[]) {
         this.submitedForm = true;
         // valid form?
         if (form.valid) {

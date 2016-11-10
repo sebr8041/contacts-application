@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16,64 +21,22 @@ var contact_1 = require('../models/contact');
 var category_1 = require('../models/category');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
-var NewContactsComponent = (function () {
+var neworeditcontacts_component_1 = require('./neworeditcontacts.component');
+var NewContactsComponent = (function (_super) {
+    __extends(NewContactsComponent, _super);
     /**
-     * create new contact.
+     * init clean formular for new contact.
      */
     function NewContactsComponent(notificationService, categoryService, contactService, router, fb) {
-        var _this = this;
-        this.notificationService = notificationService;
-        this.categoryService = categoryService;
-        this.contactService = contactService;
-        this.router = router;
-        /**
-         * all categories to choose between them.
-         */
-        this.categorys = [];
-        /**
-         * model to save all addresses from form.
-         */
-        this.addresses = [];
-        /**
-       * model to save all emails from form.
-       */
-        this.emails = [];
-        /**
-       * model to save all phones from form.
-       */
-        this.phones = [];
-        /**
-         * form submited min one time.
-         */
-        this.submitedForm = false;
-        this.categoryService.getAll().subscribe(function (categorys) { return _this.categorys = categorys; });
-        this.form = fb.group({
-            'name': [null, forms_1.Validators.required],
-            'company': [null, forms_1.Validators.required],
-            'dateOfBirth': [null, forms_1.Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
-            'category': [null, forms_1.Validators.pattern("^(?!null$).*$")]
-        });
+        // call parent.
+        _super.call(this, notificationService, categoryService, contactService, router, fb);
+        this.PAGE_TITLE = "Neuer Kontakt";
+        this.PAGE_DESC = "Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:";
+        // init clean formular
+        this.initForm(null, null, null, null, [], [], []);
     }
     /**
-     * custom track by for loops. dont loses focus
-     */
-    NewContactsComponent.prototype.customTrackBy = function (index, obj) {
-        return index;
-    };
-    /**
-     * handler to add a new element on phones, emails or addresses
-     */
-    NewContactsComponent.prototype.addNewElement = function (array) {
-        array.push("");
-    };
-    /**
-     * handler to remove a new element on phones, emails or addresses
-     */
-    NewContactsComponent.prototype.removeElement = function (index, array) {
-        array.splice(index, 1);
-    };
-    /**
-     * handler submit form.
+     * handler submit form for add NEW contact.
      */
     NewContactsComponent.prototype.submitForm = function (form, emails, addresses, phones) {
         var _this = this;
@@ -96,11 +59,11 @@ var NewContactsComponent = (function () {
     NewContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
-            templateUrl: 'app/contacts/newcontacts.component.html',
+            templateUrl: 'app/contacts/neworeditcontacts.component.html',
         }), 
         __metadata('design:paramtypes', [angular2_notifications_1.NotificationsService, category_service_1.CategoryService, contact_service_1.ContactsService, router_1.Router, forms_1.FormBuilder])
     ], NewContactsComponent);
     return NewContactsComponent;
-}());
+}(neworeditcontacts_component_1.NewOrEditContactsComponent));
 exports.NewContactsComponent = NewContactsComponent;
 //# sourceMappingURL=newcontacts.component.js.map
