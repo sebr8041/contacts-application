@@ -35,11 +35,13 @@ var ListContactsComponent = (function () {
         this.categorys = [];
         // container or modals.
         overlay.defaultViewContainer = vcRef;
+        this.loadingFinish = false;
         this.checkedCategory = [];
         this.categoryFilter = new categoryFilter_1.CategoryFilter();
         // load all contacts
         this.contactService.getAll().subscribe(function (contacts) {
             _this.contacts = contacts;
+            _this.loadingFinish = true;
         });
         // load all categorys 
         this.categoryService.getAll().subscribe(function (categorys) {

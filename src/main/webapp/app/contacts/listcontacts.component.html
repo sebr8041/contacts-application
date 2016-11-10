@@ -51,9 +51,17 @@
 			</div>
 		</div>
 	</div>
+	<div *ngIf="contacts.length === 0">
+		<div *ngIf="loadingFinish" class="alert alert-info" role="alert">
+			<p>Keine Kontakte vorhanden.</p>
+		</div>
 
+		<div *ngIf="!loadingFinish" class="alert alert-info" role="alert">
+			<p>Laden von Kontakten...</p>
+		</div>
+	</div>
 	<!-- Table -->
-	<table class="table">
+	<table class="table" *ngIf="contacts.length > 0">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -69,7 +77,7 @@
 					<a routerLink="/contacts/show/{{contact.id}}">{{contact.name}}</a>
 				</td>
 				<td>{{contact.company}}</td>
-				<td>
+				<td *ngIf="contact.category !== undefined && contact.category !== null">
 					<span class="glyphicon glyphicon-stop" [style.color]="contact.category.color"></span>
 					<a routerLink="/category/show/{{contact.category.id}}">
 					{{contact.category.name}}

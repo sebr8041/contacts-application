@@ -30,6 +30,8 @@ export class ListContactsComponent {
     private categoryFilter: CategoryFilter;
 
     private checkedCategory: boolean[];
+
+    private loadingFinish:boolean;
     /**
      * Autowire contactService
      */
@@ -41,13 +43,14 @@ export class ListContactsComponent {
         private categoryService: CategoryService) {
         // container or modals.
         overlay.defaultViewContainer = vcRef;
-
+        this.loadingFinish = false;
         this.checkedCategory = [];
         this.categoryFilter = new CategoryFilter();
 
         // load all contacts
         this.contactService.getAll().subscribe((contacts) => {
             this.contacts = contacts;
+            this.loadingFinish = true;
         });
 
         // load all categorys 
@@ -97,9 +100,9 @@ export class ListContactsComponent {
     }
 
 
-    private deleteContactFromLocaleArray(id:string){
-        this.contacts.forEach((contact,index) => {
-            if(contact.id === id){
+    private deleteContactFromLocaleArray(id: string) {
+        this.contacts.forEach((contact, index) => {
+            if (contact.id === id) {
                 this.contacts.splice(index, 1);
             }
         });
