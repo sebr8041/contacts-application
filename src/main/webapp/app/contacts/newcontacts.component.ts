@@ -71,5 +71,4 @@ export class NewContactsComponent {
             this.router.navigateByUrl('contacts/all');
         })
     }
-
 } 
