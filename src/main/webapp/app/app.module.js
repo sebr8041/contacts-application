@@ -40,6 +40,7 @@ var AppModule = (function () {
                 bootstrap_1.BootstrapModalModule,
                 http_1.HttpModule,
                 forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 angular2_notifications_1.SimpleNotificationsModule,
                 router_1.RouterModule.forRoot([
                     // Dashboard

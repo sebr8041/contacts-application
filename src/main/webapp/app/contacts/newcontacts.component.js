@@ -15,11 +15,12 @@ var category_service_1 = require('../service/category.service');
 var contact_1 = require('../models/contact');
 var category_1 = require('../models/category');
 var router_1 = require('@angular/router');
+var forms_1 = require('@angular/forms');
 var NewContactsComponent = (function () {
     /**
      * create new contact.
      */
-    function NewContactsComponent(notificationService, categoryService, contactService, router) {
+    function NewContactsComponent(notificationService, categoryService, contactService, router, fb) {
         var _this = this;
         this.notificationService = notificationService;
         this.categoryService = categoryService;
@@ -29,12 +30,16 @@ var NewContactsComponent = (function () {
          * all categories to choose between them.
          */
         this.categorys = [];
-        /**
-         * ngModel for select category.
-         */
-        this.selectedCategoryId = null;
-        this.contact = new contact_1.Contact();
+        this.addresses = [];
+        this.emails = [];
+        this.phones = [];
         this.categoryService.getAll().subscribe(function (categorys) { return _this.categorys = categorys; });
+        this.form = fb.group({
+            'name': [null, forms_1.Validators.required],
+            'company': [null, forms_1.Validators.required],
+            'dateOfBirth': [null, forms_1.Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
+            'category': [null, forms_1.Validators.pattern("^(?!null$).*$")]
+        });
     }
     /**
      * custom track by for loops. dont loses focus
@@ -55,24 +60,31 @@ var NewContactsComponent = (function () {
         array.splice(index, 1);
     };
     /**
-     * handler for add contact.
+     * handler submit form.
      */
-    NewContactsComponent.prototype.addContact = function (contact, selectedCategoryId) {
+    NewContactsComponent.prototype.submitForm = function (form, emails, addresses, phones) {
         var _this = this;
-        // cretae instance from id.
-        contact.category = new category_1.Category(selectedCategoryId);
-        // post contact to server.
-        this.contactService.add(contact).subscribe(function (respone) {
-            _this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
-            _this.router.navigateByUrl('contacts/all');
-        });
+        if (form.valid) {
+            var category = new category_1.Category(form.value.category);
+            // cretae instance from id.
+            var contact = new contact_1.Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
+            console.log("contact", contact);
+            // post contact to server.
+            this.contactService.add(contact).subscribe(function (respone) {
+                _this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
+                _this.router.navigateByUrl('contacts/all');
+            });
+        }
+        else {
+            this.notificationService.error("Falsche Eingabe", "Bitte überprüfen Sie Ihre Formulareingaben.");
+        }
     };
     NewContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
             templateUrl: 'app/contacts/newcontacts.component.html',
         }), 
-        __metadata('design:paramtypes', [angular2_notifications_1.NotificationsService, category_service_1.CategoryService, contact_service_1.ContactsService, router_1.Router])
+        __metadata('design:paramtypes', [angular2_notifications_1.NotificationsService, category_service_1.CategoryService, contact_service_1.ContactsService, router_1.Router, forms_1.FormBuilder])
     ], NewContactsComponent);
     return NewContactsComponent;
 }());

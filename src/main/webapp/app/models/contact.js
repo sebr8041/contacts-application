@@ -1,14 +1,14 @@
 "use strict";
 var Contact = (function () {
-    function Contact() {
-        this.id = null;
-        this.name = null;
-        this.company = null;
-        this.dateOfBirth = null;
-        this.category = null;
-        this.emails = [];
-        this.phones = [];
-        this.addresses = [];
+    function Contact(id, name, company, dateOfBirth, category, emails, phones, addresses) {
+        this.id = id;
+        this.name = name;
+        this.company = company;
+        this.dateOfBirth = dateOfBirth;
+        this.category = category;
+        this.emails = emails;
+        this.phones = phones;
+        this.addresses = addresses;
     }
     return Contact;
 }());

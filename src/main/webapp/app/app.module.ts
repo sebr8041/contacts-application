@@ -19,7 +19,7 @@ import { FulltextFilterPipe } from './pipes/fulltextfilter.pipe';
 import { CategoryFilterPipe } from './pipes/categoryfilter.pipe';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
@@ -29,6 +29,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
     BootstrapModalModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     SimpleNotificationsModule,
     RouterModule.forRoot([
       // Dashboard

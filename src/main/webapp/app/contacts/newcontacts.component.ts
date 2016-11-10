@@ -5,6 +5,8 @@ import { CategoryService } from '../service/category.service';
 import { IContact, Contact } from '../models/contact';
 import { ICategory, Category } from '../models/category';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
     selector: 'contacts-application',
     templateUrl: 'app/contacts/newcontacts.component.html',
@@ -21,10 +23,12 @@ export class NewContactsComponent {
      */
     private categorys: ICategory[] = [];
 
-    /**
-     * ngModel for select category.
-     */
-    private selectedCategoryId = null;
+
+    private addresses: string[] = [];
+    private emails: string[] = [];
+    private phones: string[] = [];
+
+    private form: FormGroup;
 
     /**
      * create new contact.
@@ -32,10 +36,17 @@ export class NewContactsComponent {
     constructor(private notificationService: NotificationsService,
         private categoryService: CategoryService,
         private contactService: ContactsService,
-        private router: Router) {
+        private router: Router,
+        fb: FormBuilder) {
 
-        this.contact = new Contact();
         this.categoryService.getAll().subscribe(categorys => this.categorys = categorys);
+
+        this.form = fb.group({
+            'name': [null, Validators.required],
+            'company': [null, Validators.required],
+            'dateOfBirth': [null, Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
+            'category': [null, Validators.pattern("^(?!null$).*$")]
+        });
     }
 
     /**
@@ -60,15 +71,21 @@ export class NewContactsComponent {
     }
 
     /**
-     * handler for add contact.
+     * handler submit form.
      */
-    public addContact(contact: Contact, selectedCategoryId: string) {
-        // cretae instance from id.
-        contact.category = new Category(selectedCategoryId);
-        // post contact to server.
-        this.contactService.add(contact).subscribe(respone => {
-            this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
-            this.router.navigateByUrl('contacts/all');
-        })
+    public submitForm(form: FormGroup, emails: string[], addresses: string[], phones: string[]) {
+        if (form.valid) {
+            let category = new Category(form.value.category);
+            // cretae instance from id.
+            let contact = new Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
+            console.log("contact", contact);
+            // post contact to server.
+            this.contactService.add(contact).subscribe(respone => {
+                this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
+                this.router.navigateByUrl('contacts/all');
+            })
+        } else {
+            this.notificationService.error("Falsche Eingabe", "Bitte überprüfen Sie Ihre Formulareingaben.");
+        }
     }
 } 
