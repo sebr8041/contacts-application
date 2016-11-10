@@ -11,12 +11,12 @@
 					<span class="glyphicon glyphicon-search"></span>), zu bearbeiten (<span class="glyphicon glyphicon-pencil"></span>)
 					oder zu löschen(<span class="glyphicon glyphicon-trash"></span>)</p>
 			</div>
-			<div class="col-md-3">
+			<div [hidden]="contacts.length === 0" class="col-md-3">
 				<label>Volltextsuche</label>
 				<input type="text" #fulltextsearch (keyup)="0" class="form-control">
 			</div>
 		</div>
-		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div [hidden]="contacts.length === 0" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingOne">
 					<h4 class="panel-title">
@@ -25,7 +25,7 @@
 						</a>
 					</h4>
 				</div>
-				<div id="kategorieFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div  id="kategorieFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					<div class="panel-body">
 						<div class="row">
 							<div class="col col-md-4">
@@ -50,14 +50,15 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div *ngIf="contacts.length === 0">
-		<div *ngIf="loadingFinish" class="alert alert-info" role="alert">
-			<p>Keine Kontakte vorhanden.</p>
-		</div>
 
-		<div *ngIf="!loadingFinish" class="alert alert-info" role="alert">
-			<p>Laden von Kontakten...</p>
+		<div *ngIf="contacts.length === 0">
+			<div *ngIf="loadingFinish" class="alert alert-info" role="alert">
+				<p>Keine Kontakte vorhanden.</p>
+			</div>
+
+			<div *ngIf="!loadingFinish" class="alert alert-info" role="alert">
+				<p>Laden von Kontakten...</p>
+			</div>
 		</div>
 	</div>
 	<!-- Table -->
