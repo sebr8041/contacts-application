@@ -23,12 +23,30 @@ export class NewContactsComponent {
      */
     private categorys: ICategory[] = [];
 
-
+    /**
+     * model to save all addresses from form.
+     */
     private addresses: string[] = [];
+
+      /**
+     * model to save all emails from form.
+     */
     private emails: string[] = [];
+
+      /**
+     * model to save all phones from form.
+     */
     private phones: string[] = [];
 
+    /**
+     * form group 
+     */
     private form: FormGroup;
+
+    /**
+     * form submited min one time.
+     */
+    private submitedForm : boolean = false;
 
     /**
      * create new contact.
@@ -74,11 +92,12 @@ export class NewContactsComponent {
      * handler submit form.
      */
     public submitForm(form: FormGroup, emails: string[], addresses: string[], phones: string[]) {
+        this.submitedForm = true;
+        // valid form?
         if (form.valid) {
             let category = new Category(form.value.category);
             // cretae instance from id.
             let contact = new Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
-            console.log("contact", contact);
             // post contact to server.
             this.contactService.add(contact).subscribe(respone => {
                 this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");

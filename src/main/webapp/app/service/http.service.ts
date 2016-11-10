@@ -13,7 +13,7 @@ export abstract class HttpService {
     /**
      * base url for backend api
      */
-    private readonly API_BASE_URL: string = "http://localhost:1337/api/";
+    private readonly API_BASE_URL: string = "http://localhost:8080/api/";
 
     /**
      * Header for each Backend-API request

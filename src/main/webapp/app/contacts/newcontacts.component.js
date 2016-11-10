@@ -30,9 +30,22 @@ var NewContactsComponent = (function () {
          * all categories to choose between them.
          */
         this.categorys = [];
+        /**
+         * model to save all addresses from form.
+         */
         this.addresses = [];
+        /**
+       * model to save all emails from form.
+       */
         this.emails = [];
+        /**
+       * model to save all phones from form.
+       */
         this.phones = [];
+        /**
+         * form submited min one time.
+         */
+        this.submitedForm = false;
         this.categoryService.getAll().subscribe(function (categorys) { return _this.categorys = categorys; });
         this.form = fb.group({
             'name': [null, forms_1.Validators.required],
@@ -64,11 +77,12 @@ var NewContactsComponent = (function () {
      */
     NewContactsComponent.prototype.submitForm = function (form, emails, addresses, phones) {
         var _this = this;
+        this.submitedForm = true;
+        // valid form?
         if (form.valid) {
             var category = new category_1.Category(form.value.category);
             // cretae instance from id.
             var contact = new contact_1.Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
-            console.log("contact", contact);
             // post contact to server.
             this.contactService.add(contact).subscribe(function (respone) {
                 _this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");

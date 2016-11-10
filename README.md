@@ -21,7 +21,7 @@ java -jar [NAME_OF_JAR]
 ```
 
 gestartet werden.
-Der Server läuft auf dem Port 1337.
+Der Server läuft auf dem Port 8080.
 
 ## Server
 Der Server kann mit 
