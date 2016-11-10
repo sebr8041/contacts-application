@@ -27,11 +27,21 @@ export class ListContactsComponent {
      */
     private categorys: ICategory[] = [];
 
+    /**
+     * model for filter data
+     */
     private categoryFilter: CategoryFilter;
 
+    /**
+     * checkbox-models for categorys.
+     */
     private checkedCategory: boolean[];
 
+    /**
+     * all contacts loaded completly?
+     */
     private loadingFinish:boolean;
+
     /**
      * Autowire contactService
      */
@@ -43,6 +53,8 @@ export class ListContactsComponent {
         private categoryService: CategoryService) {
         // container or modals.
         overlay.defaultViewContainer = vcRef;
+
+        // init values
         this.loadingFinish = false;
         this.checkedCategory = [];
         this.categoryFilter = new CategoryFilter();
@@ -61,6 +73,9 @@ export class ListContactsComponent {
 
     }
 
+    /**
+     * reset all checkboxes to false.
+     */
     private resetCheckboxes() {
         this.checkedCategory = [];
         for (let i = 0; i < this.categorys.length; i++) {
@@ -94,12 +109,14 @@ export class ListContactsComponent {
                         this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
                     });
                 }, (result) => {
-                    // fail
+                    // fail => nothing happens. user canceled action
                 })
         });
     }
 
-
+    /**
+     * deleteing a contact from the locale array (no need to reload complete contacts)
+     */
     private deleteContactFromLocaleArray(id: string) {
         this.contacts.forEach((contact, index) => {
             if (contact.id === id) {
@@ -108,6 +125,9 @@ export class ListContactsComponent {
         });
     }
 
+    /**
+     * handler for reset category filter.
+     */
     public resetCategoryFilter() {
         this.resetCheckboxes();
         this.categoryFilter = new CategoryFilter();

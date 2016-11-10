@@ -35,6 +35,7 @@ var ListContactsComponent = (function () {
         this.categorys = [];
         // container or modals.
         overlay.defaultViewContainer = vcRef;
+        // init values
         this.loadingFinish = false;
         this.checkedCategory = [];
         this.categoryFilter = new categoryFilter_1.CategoryFilter();
@@ -49,6 +50,9 @@ var ListContactsComponent = (function () {
             _this.resetCheckboxes();
         });
     }
+    /**
+     * reset all checkboxes to false.
+     */
     ListContactsComponent.prototype.resetCheckboxes = function () {
         this.checkedCategory = [];
         for (var i = 0; i < this.categorys.length; i++) {
@@ -82,10 +86,13 @@ var ListContactsComponent = (function () {
                     _this.notificationService.success("Erfolg!", 'Kontakt  "' + contact.name + '" gelöscht!');
                 });
             }, function (result) {
-                // fail
+                // fail => nothing happens. user canceled action
             });
         });
     };
+    /**
+     * deleteing a contact from the locale array (no need to reload complete contacts)
+     */
     ListContactsComponent.prototype.deleteContactFromLocaleArray = function (id) {
         var _this = this;
         this.contacts.forEach(function (contact, index) {
@@ -94,6 +101,9 @@ var ListContactsComponent = (function () {
             }
         });
     };
+    /**
+     * handler for reset category filter.
+     */
     ListContactsComponent.prototype.resetCategoryFilter = function () {
         this.resetCheckboxes();
         this.categoryFilter = new categoryFilter_1.CategoryFilter();
