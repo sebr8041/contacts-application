@@ -2,3 +2,4 @@
 nb-configuration.xml
 /src/main/webapp/node_modules
 /target-grunt/
+npm-debug.log
