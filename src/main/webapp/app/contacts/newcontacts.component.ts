@@ -6,13 +6,13 @@ import { IContact, Contact } from '../models/contact';
 import { ICategory, Category } from '../models/category';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NewOrEditContactsComponent } from './neworeditcontacts.component'
+import { AbstractContactsComponent } from './abstractcontacts.component'
 
 @Component({
     selector: 'contacts-application',
-    templateUrl: 'app/contacts/neworeditcontacts.component.html',
+    templateUrl: 'app/contacts/abstractcontacts.component.html',
 })
-export class NewContactsComponent extends NewOrEditContactsComponent {
+export class NewContactsComponent extends AbstractContactsComponent {
 
     private readonly PAGE_TITLE:string = "Neuer Kontakt";
     private readonly PAGE_DESC:string = "Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:";
@@ -29,7 +29,7 @@ export class NewContactsComponent extends NewOrEditContactsComponent {
         super(notificationService, categoryService, contactService, router, fb);
 
         // init clean formular
-        this.initForm(null, null, null, null, [], [], []);
+        this.setFormData(null, null, null, null, [], [], []);
     }
 
     /**

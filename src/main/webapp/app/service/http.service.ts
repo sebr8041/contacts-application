@@ -54,6 +54,13 @@ export abstract class HttpService {
     }
 
     /**
+     * Backend Request for post element.
+     */
+    protected put(url: string, data: any): Observable<Response> {
+        return this.http.put(this.API_BASE_URL + url, data, this.API_HEADER);
+    }
+
+    /**
      * Error Handler
      */
     protected handleError(error: any): Observable<any> {

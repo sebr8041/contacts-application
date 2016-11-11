@@ -55,6 +55,12 @@ var HttpService = (function () {
         return this.http.post(this.API_BASE_URL + url, data, this.API_HEADER);
     };
     /**
+     * Backend Request for post element.
+     */
+    HttpService.prototype.put = function (url, data) {
+        return this.http.put(this.API_BASE_URL + url, data, this.API_HEADER);
+    };
+    /**
      * Error Handler
      */
     HttpService.prototype.handleError = function (error) {

@@ -6,20 +6,22 @@ import { IContact, Contact } from '../models/contact';
 import { ICategory, Category } from '../models/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NewOrEditContactsComponent } from './neworeditcontacts.component'
-import { Control } from '@angular/common';
+import { AbstractContactsComponent } from './abstractcontacts.component'
+
 @Component({
     selector: 'contacts-application',
-    templateUrl: 'app/contacts/neworeditcontacts.component.html',
+    templateUrl: 'app/contacts/abstractcontacts.component.html',
 })
-export class EditContactsComponent extends NewOrEditContactsComponent {
+export class EditContactsComponent extends AbstractContactsComponent {
 
     private readonly PAGE_TITLE: string = "Kontakt bearbeiten";
     private readonly PAGE_DESC: string = "Mit dem folgenden Formular können Sie diesen Kontakt bearbeiten:";
 
+    /**
+     * id from the curretn contact
+     */
+    private contactId : string = null;
 
-    private email: Control = new Control("");
-    name: Control = new Control("");
     /**
      * init clean formular for new contact.
      */
@@ -32,16 +34,14 @@ export class EditContactsComponent extends NewOrEditContactsComponent {
         // call parent.
         super(notificationService, categoryService, contactService, router, fb);
 
-        this.form = this.formBuilder.group({
-            'name': [null, Validators.required],
-            'company': [null, Validators.required],
-            'dateOfBirth': [null, Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
-            'category': [null, Validators.pattern("^(?!null$).*$")]
-        });
-
         this.route.params.subscribe(params =>
             this.contactService.find(params['id']).subscribe(
                 contact => {
+                    // set contact data
+                    this.setFormData(contact.name, contact.company, contact.dateOfBirth, contact.category, contact.addresses, contact.emails, contact.phones);
+
+                    // set id of edit contact
+                    this.contactId = contact.id;
                 },
                 error => {
                     this.notificationService.error("Kontakt nicht gefunden.", "Der von Ihnen geöffnete Kontakt wurde nicht gefunden.");
@@ -53,18 +53,18 @@ export class EditContactsComponent extends NewOrEditContactsComponent {
     }
 
     /**
-     * handler submit form for add NEW contact.
+     * handler submit form for UPDATE contact.
      */
     protected submitForm(form: FormGroup, emails: string[], addresses: string[], phones: string[]) {
         this.submitedForm = true;
         // valid form?
         if (form.valid) {
             let category = new Category(form.value.category);
-            // cretae instance from id.
-            let contact = new Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
-            // post contact to server.
-            this.contactService.add(contact).subscribe(respone => {
-                this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
+            // cretae instance
+            let contact = new Contact(this.contactId, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
+            // update contact to server.
+            this.contactService.update(contact).subscribe(respone => {
+                this.notificationService.success("Erfolg", "Kontakt erfolgreich bearbeitet.");
                 this.router.navigateByUrl('contacts/all');
             })
         } else {

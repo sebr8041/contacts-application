@@ -46,4 +46,13 @@ export class ContactsService extends HttpService {
         return this.post("contact", contact);
     }
 
+
+    /**
+    * update a contact
+    */
+    public update(contact: IContact): Observable<Response> {
+        return this.put("contact", contact);
+    }
+
+
 } 

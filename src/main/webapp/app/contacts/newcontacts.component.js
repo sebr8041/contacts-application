@@ -21,7 +21,7 @@ var contact_1 = require('../models/contact');
 var category_1 = require('../models/category');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
-var neworeditcontacts_component_1 = require('./neworeditcontacts.component');
+var abstractcontacts_component_1 = require('./abstractcontacts.component');
 var NewContactsComponent = (function (_super) {
     __extends(NewContactsComponent, _super);
     /**
@@ -33,7 +33,7 @@ var NewContactsComponent = (function (_super) {
         this.PAGE_TITLE = "Neuer Kontakt";
         this.PAGE_DESC = "Mit dem folgenden Formular können Sie einen neuen Kontakt hinzufügen:";
         // init clean formular
-        this.initForm(null, null, null, null, [], [], []);
+        this.setFormData(null, null, null, null, [], [], []);
     }
     /**
      * handler submit form for add NEW contact.
@@ -59,11 +59,11 @@ var NewContactsComponent = (function (_super) {
     NewContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
-            templateUrl: 'app/contacts/neworeditcontacts.component.html',
+            templateUrl: 'app/contacts/abstractcontacts.component.html',
         }), 
         __metadata('design:paramtypes', [angular2_notifications_1.NotificationsService, category_service_1.CategoryService, contact_service_1.ContactsService, router_1.Router, forms_1.FormBuilder])
     ], NewContactsComponent);
     return NewContactsComponent;
-}(neworeditcontacts_component_1.NewOrEditContactsComponent));
+}(abstractcontacts_component_1.AbstractContactsComponent));
 exports.NewContactsComponent = NewContactsComponent;
 //# sourceMappingURL=newcontacts.component.js.map
