@@ -1,9 +1,9 @@
 package de.uniluebeck.sse.contact.application.resources;
 
-import de.uniluebeck.sse.contact.application.models.Contact;
-import de.uniluebeck.sse.contact.application.repository.ContactRepository;
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import de.uniluebeck.sse.contact.application.models.Contact;
+import de.uniluebeck.sse.contact.application.repository.ContactRepository;
 
 /**
  * <p>
@@ -51,7 +54,7 @@ public class ContactResource {
         Validate.notNull(contact);
         return contactRepository.save(contact);
     }
-    
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void deleteContact(@PathVariable("id") final String id) {
         contactRepository.delete(id);
