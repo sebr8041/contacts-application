@@ -1,5 +1,8 @@
-/target/
+.classpath
+.project
+npm-debug.log
 nb-configuration.xml
+/target/
+/.settings/
 /src/main/webapp/node_modules
 /target-grunt/
-npm-debug.log
