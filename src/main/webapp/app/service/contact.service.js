@@ -51,6 +51,12 @@ var ContactsService = (function (_super) {
     ContactsService.prototype.add = function (contact) {
         return this.post("contact", contact);
     };
+    /**
+    * update a contact
+    */
+    ContactsService.prototype.update = function (contact) {
+        return this.put("contact", contact);
+    };
     ContactsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, angular2_notifications_1.NotificationsService])

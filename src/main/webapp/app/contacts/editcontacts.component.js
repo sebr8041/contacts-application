@@ -21,8 +21,7 @@ var contact_1 = require('../models/contact');
 var category_1 = require('../models/category');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
-var neworeditcontacts_component_1 = require('./neworeditcontacts.component');
-var common_1 = require('@angular/common');
+var abstractcontacts_component_1 = require('./abstractcontacts.component');
 var EditContactsComponent = (function (_super) {
     __extends(EditContactsComponent, _super);
     /**
@@ -35,16 +34,16 @@ var EditContactsComponent = (function (_super) {
         this.route = route;
         this.PAGE_TITLE = "Kontakt bearbeiten";
         this.PAGE_DESC = "Mit dem folgenden Formular können Sie diesen Kontakt bearbeiten:";
-        this.email = new common_1.Control("");
-        this.name = new common_1.Control("");
-        this.form = this.formBuilder.group({
-            'name': [null, forms_1.Validators.required],
-            'company': [null, forms_1.Validators.required],
-            'dateOfBirth': [null, forms_1.Validators.pattern("^[0-9][0-9][0-9][0-9][\-][0-9][0-9][\-][0-9][0-9]$")],
-            'category': [null, forms_1.Validators.pattern("^(?!null$).*$")]
-        });
+        /**
+         * id from the curretn contact
+         */
+        this.contactId = null;
         this.route.params.subscribe(function (params) {
             return _this.contactService.find(params['id']).subscribe(function (contact) {
+                // set contact data
+                _this.setFormData(contact.name, contact.company, contact.dateOfBirth, contact.category, contact.addresses, contact.emails, contact.phones);
+                // set id of edit contact
+                _this.contactId = contact.id;
             }, function (error) {
                 _this.notificationService.error("Kontakt nicht gefunden.", "Der von Ihnen geöffnete Kontakt wurde nicht gefunden.");
                 _this.router.navigateByUrl('contacts/all');
@@ -52,7 +51,7 @@ var EditContactsComponent = (function (_super) {
         });
     }
     /**
-     * handler submit form for add NEW contact.
+     * handler submit form for UPDATE contact.
      */
     EditContactsComponent.prototype.submitForm = function (form, emails, addresses, phones) {
         var _this = this;
@@ -60,11 +59,11 @@ var EditContactsComponent = (function (_super) {
         // valid form?
         if (form.valid) {
             var category = new category_1.Category(form.value.category);
-            // cretae instance from id.
-            var contact = new contact_1.Contact(null, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
-            // post contact to server.
-            this.contactService.add(contact).subscribe(function (respone) {
-                _this.notificationService.success("Erfolg", "Kontakt erfolgreich erstellt.");
+            // cretae instance
+            var contact = new contact_1.Contact(this.contactId, form.value.name, form.value.company, form.value.dateOfBirth, category, emails, phones, addresses);
+            // update contact to server.
+            this.contactService.update(contact).subscribe(function (respone) {
+                _this.notificationService.success("Erfolg", "Kontakt erfolgreich bearbeitet.");
                 _this.router.navigateByUrl('contacts/all');
             });
         }
@@ -75,11 +74,11 @@ var EditContactsComponent = (function (_super) {
     EditContactsComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
-            templateUrl: 'app/contacts/neworeditcontacts.component.html',
+            templateUrl: 'app/contacts/abstractcontacts.component.html',
         }), 
         __metadata('design:paramtypes', [angular2_notifications_1.NotificationsService, category_service_1.CategoryService, contact_service_1.ContactsService, router_1.ActivatedRoute, router_1.Router, forms_1.FormBuilder])
     ], EditContactsComponent);
     return EditContactsComponent;
-}(neworeditcontacts_component_1.NewOrEditContactsComponent));
+}(abstractcontacts_component_1.AbstractContactsComponent));
 exports.EditContactsComponent = EditContactsComponent;
 //# sourceMappingURL=editcontacts.component.js.map
