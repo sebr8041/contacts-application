@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.uniluebeck.sse.contact.application.models.Category;
+import de.uniluebeck.sse.contact.application.models.Contact;
 import de.uniluebeck.sse.contact.application.repository.CategoryRepository;
 import de.uniluebeck.sse.contact.application.repository.ContactRepository;
 import de.uniluebeck.sse.contact.application.resources.exception.CannotDeleteCategoryException;
@@ -63,5 +64,10 @@ public class CategoryResource {
             throw new CannotDeleteCategoryException("The category is not empty!");
         }
         categoryRepository.delete(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/contact")
+    public List<Contact> getAllContactsOfCategory(@PathVariable("id") final String id) {
+        return contactRepository.findByCategory(id);
     }
 }
