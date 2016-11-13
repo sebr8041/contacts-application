@@ -53,5 +53,11 @@ export class ContactsService extends HttpService {
         return this.put("contact", contact);
     }
 
+    /**
+     * find all contacts from an category
+     */
+    public findByCategory(id: string) : Observable<IContact[]> {
+        return this.get("category/" + id + "/contact").map((response) => response.json() as IContact[]);
+    }
 
 } 

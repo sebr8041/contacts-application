@@ -16,7 +16,6 @@ export class ListCategoryComponent {
      */
     private categorys: ICategory[] = [];
 
-
     /**
      * Autowire contactService
      */
@@ -24,7 +23,7 @@ export class ListCategoryComponent {
         public modal: Modal,
         private notificationService: NotificationsService,
         overlay: Overlay,
-        vcRef: ViewContainerRef, ) {
+        vcRef: ViewContainerRef ) {
         // container or modals.
         overlay.defaultViewContainer = vcRef;
         // load all categorys 
@@ -39,7 +38,6 @@ export class ListCategoryComponent {
     public deleteCategory(id: string) {
         // find contact 
         this.categoryService.find(id).subscribe((category) => {
-            console.log("dfsf");
             // user should confirm deleting a contact.
             this.modal.confirm()
                 .size('sm')

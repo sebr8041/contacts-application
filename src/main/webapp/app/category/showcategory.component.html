@@ -22,6 +22,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-12">
+						<div *ngIf="emailList.length === 0" class="form-group">
+							<p>Es existieren keine Kontakt in dieser Kategorie.</p>
+						</div>
+						<div *ngIf="emailList.length > 0" class="form-group">
+							<a [(href)]="emailList" class="btn btn-primary">E-Mail an alle Kontakte der Liste</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

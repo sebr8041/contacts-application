@@ -40,7 +40,6 @@ var ListCategoryComponent = (function () {
         var _this = this;
         // find contact 
         this.categoryService.find(id).subscribe(function (category) {
-            console.log("dfsf");
             // user should confirm deleting a contact.
             _this.modal.confirm()
                 .size('sm')
