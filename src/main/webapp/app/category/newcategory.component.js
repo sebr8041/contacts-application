@@ -42,8 +42,8 @@ var NewCategoryComponent = (function () {
         this.color.setValidators(forms_1.Validators.pattern("^(?!null$).*$"));
     }
     /**
- * handler submit form for add NEW contact.
- */
+     * handler submit form for add NEW contact.
+     */
     NewCategoryComponent.prototype.submitForm = function (form) {
         var _this = this;
         this.submitedForm = true;

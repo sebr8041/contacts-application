@@ -19,7 +19,9 @@ export class ShowCategoryComponent {
      */
     private category: ICategory = null;
 
-
+    /**
+     * string to save emails to send message.
+     */
     private emailList: string = "mailto: ";
 
     /**
@@ -41,7 +43,7 @@ export class ShowCategoryComponent {
                     this.router.navigateByUrl('category/all');
                 }
             );
-
+            // load contacts from category.
             this.contactService.findByCategory(params['id']).subscribe(contacts => {
                 let counter = 0;
                 contacts.forEach(contact => {

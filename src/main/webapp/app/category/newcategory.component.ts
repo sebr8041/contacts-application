@@ -50,8 +50,8 @@ export class NewCategoryComponent {
 
 
     /**
- * handler submit form for add NEW contact.
- */
+     * handler submit form for add NEW contact.
+     */
     protected submitForm(form: FormGroup) {
         this.submitedForm = true;
         // valid form?

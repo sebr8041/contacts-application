@@ -29,6 +29,9 @@ var ShowCategoryComponent = (function () {
          * storage for category from backend.
          */
         this.category = null;
+        /**
+         * string to save emails to send message.
+         */
         this.emailList = "mailto: ";
         this.route.params.subscribe(function (params) {
             // load category.
@@ -38,6 +41,7 @@ var ShowCategoryComponent = (function () {
                 _this.notificationService.error("Kategorie nicht gefunden.", "Die von Ihnen geöffnete Kategorie wurde nicht gefunden.");
                 _this.router.navigateByUrl('category/all');
             });
+            // load contacts from category.
             _this.contactService.findByCategory(params['id']).subscribe(function (contacts) {
                 var counter = 0;
                 contacts.forEach(function (contact) {
