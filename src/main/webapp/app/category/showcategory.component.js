@@ -15,7 +15,7 @@ var angular2_notifications_1 = require('angular2-notifications');
 var router_2 = require('@angular/router');
 var ShowCategoryComponent = (function () {
     /**
-     * load param from url and ask contactsService to load contact by id.
+     * load param from url and ask categoryService to load category by id.
      */
     function ShowCategoryComponent(categoryService, route, notificationService, router) {
         var _this = this;
@@ -23,6 +23,9 @@ var ShowCategoryComponent = (function () {
         this.route = route;
         this.notificationService = notificationService;
         this.router = router;
+        /**
+         * storage for category from backend.
+         */
         this.category = null;
         this.route.params.subscribe(function (params) {
             return _this.categoryService.find(params['id']).subscribe(function (category) {

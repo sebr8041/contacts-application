@@ -13,10 +13,13 @@ import { Router } from '@angular/router';
 })
 export class ShowCategoryComponent {
 
+    /**
+     * storage for category from backend.
+     */
     private category: ICategory = null;
 
     /**
-     * load param from url and ask contactsService to load contact by id.
+     * load param from url and ask categoryService to load category by id.
      */
     constructor(private categoryService: CategoryService,
         private route: ActivatedRoute,
