@@ -46,7 +46,6 @@ export class ContactsService extends HttpService {
         return this.post("contact", contact);
     }
 
-
     /**
     * update a contact
     */

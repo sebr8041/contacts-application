@@ -9,15 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var category_service_1 = require('../service/category.service');
+var router_1 = require('@angular/router');
+var angular2_notifications_1 = require('angular2-notifications');
+var router_2 = require('@angular/router');
 var ShowCategoryComponent = (function () {
-    function ShowCategoryComponent() {
+    /**
+     * load param from url and ask contactsService to load contact by id.
+     */
+    function ShowCategoryComponent(categoryService, route, notificationService, router) {
+        var _this = this;
+        this.categoryService = categoryService;
+        this.route = route;
+        this.notificationService = notificationService;
+        this.router = router;
+        this.category = null;
+        this.route.params.subscribe(function (params) {
+            return _this.categoryService.find(params['id']).subscribe(function (category) {
+                _this.category = category;
+            }, function (error) {
+                _this.notificationService.error("Kategorie nicht gefunden.", "Die von Ihnen geöffnete Kategorie wurde nicht gefunden.");
+                _this.router.navigateByUrl('category/all');
+            });
+        });
     }
     ShowCategoryComponent = __decorate([
         core_1.Component({
             selector: 'contacts-application',
             templateUrl: 'app/category/showcategory.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [category_service_1.CategoryService, router_1.ActivatedRoute, angular2_notifications_1.NotificationsService, router_2.Router])
     ], ShowCategoryComponent);
     return ShowCategoryComponent;
 }());

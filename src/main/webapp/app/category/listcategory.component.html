@@ -20,15 +20,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr *ngFor="let category of categorys">
 				<td>
-					<a routerLink="/category/show/1">Geschäftspartner</a>
+					<a routerLink="/category/show/{{category.id}}">{{category.name}}</a>
 				</td>
-				<td>darkgreen</td>
+				<td>
+					<span class="glyphicon glyphicon-stop" [style.color]="category.color"></span> {{category.color}}
+				</td>
                 <td>
-                    <button routerLink="/category/show/1" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-                    <button routerLink="/category/edit/1" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button routerLink="/category/show/{{category.id}}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    <button routerLink="/category/edit/{{category.id}}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button (click)="deleteCategory(category)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
 			</tr>
 		</tbody>

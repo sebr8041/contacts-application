@@ -26,12 +26,32 @@ export class CategoryService extends HttpService {
     }
 
     /**
-     * Returns one contact by id. 
+     * Returns one category by id. 
      */
     public find(id: string): Observable<ICategory> {
         return this.get("category/" + id).map((response) => response.json() as ICategory); 
     }
 
 
+    /**
+     * Delete category by id.
+     */
+    public remove(id: string): Observable<Response> {
+        return this.delete("category/" + id);
+    }
+
+    /**
+    * add a new category
+    */
+    public add(category: ICategory): Observable<Response> {
+        return this.post("category", category);
+    }
+
+    /**
+    * update a category
+    */
+    public update(category: ICategory): Observable<Response> {
+        return this.put("category", category);
+    }
 
 } 

@@ -1,1 +1,31 @@
-ShowCatgory
+<div class="row" *ngIf="category !== null && category !== undefined">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Allgemein</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" readonly="readonly" [(ngModel)]="category.name" class="form-control">
+						</div>
+
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>CSS-Farbe</label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stop" [style.color]="category.color"></span></span>
+								<input readonly="readonly" [(ngModel)]="category.color" aria-describedby="basic-addon1" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

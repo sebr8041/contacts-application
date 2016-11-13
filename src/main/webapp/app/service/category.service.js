@@ -34,10 +34,28 @@ var CategoryService = (function (_super) {
         return this.get("category").map(function (response) { return response.json(); });
     };
     /**
-     * Returns one contact by id.
+     * Returns one category by id.
      */
     CategoryService.prototype.find = function (id) {
         return this.get("category/" + id).map(function (response) { return response.json(); });
+    };
+    /**
+     * Delete category by id.
+     */
+    CategoryService.prototype.remove = function (id) {
+        return this.delete("category/" + id);
+    };
+    /**
+    * add a new category
+    */
+    CategoryService.prototype.add = function (category) {
+        return this.post("category", category);
+    };
+    /**
+    * update a category
+    */
+    CategoryService.prototype.update = function (category) {
+        return this.put("category", category);
     };
     CategoryService = __decorate([
         core_1.Injectable(), 
