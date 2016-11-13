@@ -30,7 +30,7 @@
                 <td>
                     <button routerLink="/category/show/{{category.id}}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                     <button routerLink="/category/edit/{{category.id}}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button (click)="deleteCategory(category)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button (click)="deleteCategory(category.id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
 			</tr>
 		</tbody>
