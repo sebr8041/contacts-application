@@ -5,4 +5,5 @@ nb-configuration.xml
 /target/
 /.settings/
 /src/main/webapp/node_modules
+/src/main/webapp/node
 /target-grunt/
