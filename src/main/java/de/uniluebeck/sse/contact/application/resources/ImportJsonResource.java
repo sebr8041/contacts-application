@@ -20,8 +20,8 @@ import de.uniluebeck.sse.contact.application.repository.CategoryRepository;
 import de.uniluebeck.sse.contact.application.repository.ContactRepository;
 
 /**
- *
- * @author brodersen
+ * Resource for importing 
+ * @author Sebastian Brodersen
  */
 @CrossOrigin
 @RestController

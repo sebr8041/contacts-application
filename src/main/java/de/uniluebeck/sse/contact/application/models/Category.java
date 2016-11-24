@@ -4,8 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
 /**
- *
- * @author Daniel Rickert
+ * Model for a category
  */
 public class Category {
 

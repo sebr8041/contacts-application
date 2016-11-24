@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.uniluebeck.sse.contact.application.models;
 
 import java.util.Date;
 
 /**
- *
- * @author brodersen
+ * model for import contact.
+ * is diffrent from contact mongo model because category is DBRef and not a "normal" SQL-Foreign key.
  */
 public class ImportContact extends Contact {
 

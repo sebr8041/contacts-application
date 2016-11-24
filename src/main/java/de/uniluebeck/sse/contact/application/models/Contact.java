@@ -8,8 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
- *
- * @author Daniel Rickert
+ * Contact Model
  */
 public class Contact {
 

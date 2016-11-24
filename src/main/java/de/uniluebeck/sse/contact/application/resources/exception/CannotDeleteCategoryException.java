@@ -4,13 +4,9 @@ package de.uniluebeck.sse.contact.application.resources.exception;
  * Exception will be thrown, if a category can't be deleted.
  * 
  * @author Daniel Rickert
- *
  */
 public class CannotDeleteCategoryException extends RuntimeException {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -4972341443164558275L;
 
     public CannotDeleteCategoryException() {

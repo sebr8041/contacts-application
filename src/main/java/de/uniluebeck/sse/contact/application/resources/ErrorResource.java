@@ -23,6 +23,9 @@ import de.uniluebeck.sse.contact.application.resources.exception.CannotDeleteCat
 @RequestMapping("/error")
 public class ErrorResource implements ErrorController {
 
+    /**
+     * Logger Instance for class
+     */
     private static final Logger LOG = LoggerFactory.getLogger(ErrorController.class);
 
     private final ErrorAttributes errorAttributes;
@@ -33,11 +36,24 @@ public class ErrorResource implements ErrorController {
         this.errorAttributes = errorAttributes;
     }
 
+    /**
+     * path for error page/this resource
+     * <p>
+     *
+     * @return
+     */
     @Override
     public String getErrorPath() {
         return "/error";
     }
 
+    /**
+     * redirect when error occured.
+     * <p>
+     *
+     * @param aResponse
+     * @throws IOException
+     */
     @RequestMapping
     public void error(final HttpServletResponse aResponse) throws IOException {
         aResponse.sendRedirect("/");
@@ -46,11 +62,11 @@ public class ErrorResource implements ErrorController {
     /**
      * All Exceptions will return conflict (409)
      * <p>
-     * 
+     *
      * @param response
      * @throws IOException
      */
-    @ExceptionHandler({ CannotDeleteCategoryException.class })
+    @ExceptionHandler({CannotDeleteCategoryException.class})
     void handleConflict(final HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.CONFLICT.value());
     }
