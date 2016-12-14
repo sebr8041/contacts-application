@@ -1,7 +1,7 @@
 # contacts-application - Kontaktverwaltung
 ## Universität zu Lübeck - Aktuelle Themen SSE - Contacts Application
 
-## Schritt für Schritt
+## Step by Step
 ### 1. Install MongoDB:
 #### 1.1 Go to: 
 
@@ -62,4 +62,4 @@ java -jar target/contact-application-1.0.0-SNAPSHOT.jar
 
 ```
 http://localhost:8080/
-``
+```
