@@ -11,7 +11,11 @@ https://docs.mongodb.com/v3.2/administration/install-community/
 
 #### 1.2 Select your Operating System
 #### 1.3 Follow the instructions
-#### 1.4 Start MongoDB using the following: sudo service mongod start
+#### 1.4 Start MongoDB using the following: 
+
+```
+sudo service mongod start
+```
 
 ### 2. Install Java 1.8 (JDK)
 #### 2.1 Go to
