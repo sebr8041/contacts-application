@@ -25,7 +25,7 @@ var HttpService = (function () {
         /**
          * base url for backend api
          */
-        this.API_BASE_URL = "http://localhost:8080/api/";
+        this.API_BASE_URL = "/api/";
         /**
          * Header for each Backend-API request
          */
