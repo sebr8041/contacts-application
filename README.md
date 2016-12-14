@@ -1,11 +1,6 @@
 # contacts-application - Kontaktverwaltung
 ## Universität zu Lübeck - Aktuelle Themen SSE - Contacts Application
 
-# 1. Installation
-Damit das Projekt installiert werden kann, muss Maven in der Version min. 3.3.3 und Java 1.8 vorhanden sein. 
-Des weiteren wird für das Frontend Node (Version min. 6.9.1) und NPM (Version 3.10.8) benötigt.
-Als Datenbank wird eine MongoDB (Version 3.2.0) verwendet. Diese muss ebenfalls auf dem System installiert sein.
-
 ## Schritt für Schritt
 ### 1. Install MongoDB:
 #### 1.1 Go to: 
@@ -63,4 +58,8 @@ mvn clean install
 java -jar target/contact-application-1.0.0-SNAPSHOT.jar
 ```
 
-#### 5.4 Open a Webbrowser and go to http://localhost:8080/
+#### 5.4 Open a Webbrowser and go to 
+
+```
+http://localhost:8080/
+``
