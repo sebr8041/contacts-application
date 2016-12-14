@@ -37,67 +37,30 @@ http://maven.apache.org/download.cgi
 and download Maven 3.3
 #### 3.2 Follow the instructions: http://maven.apache.org/install.html
 
-### 4. Install NodeJS
 
-```
-sudo apt-get install python-software-properties
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install nodejs
-```
-
-### 5. Clone the Git-Repository:
+### 4. Clone the Git-Repository:
 
 ```
 git clone https://github.com/sebr8041/contacts-application.git
 ```
 
-### 6. Build and Run 
-#### 6.1 Change to directory: cd contacts-application
-#### 6.2 Build the Project using: mvn clean install
-#### 6.3 Run the server by typing:
+### 5. Build and Run 
+#### 5.1 Change to directory: 
 
 ```
-java -jar target/contact-application-1.0.0-SNAPSHOT.jar
+cd contacts-application
 ```
 
-#### 6.4 Open a Webbrowser and go to http://localhost:8080/
-
-# 2. Build and Run
-## Gesmtes Projekt
-Um das gesamte Projekt zu bauen, kann Maven verwendet werden.
+#### 5.2 Build the Project using: 
 
 ```
 mvn clean install
 ```
 
-Anschließend kann das jar mit
+#### 5.3 Run the server by typing:
 
 ```
-java -jar [NAME_OF_JAR]
+java -jar target/contact-application-1.0.0-SNAPSHOT.jar
 ```
 
-gestartet werden.
-Der Server läuft auf dem Port 8080.
-
-## Server
-Der Server kann mit 
-
-```
-mvn clean package
-```
-
-gebaut werden.
-Zum Starten des Servers verwende man
-
-```
-java -jar [NAME_OF_JAR]
-```
-
-## Client
-Der Client kann in src/main/webapp mit
-
-```
-npm install
-```
-
-gebaut werden.
+#### 5.4 Open a Webbrowser and go to http://localhost:8080/
