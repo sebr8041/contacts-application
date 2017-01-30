@@ -51,7 +51,7 @@
       },
       'angular2-modal/plugins/bootstrap': {
         defaultExtension: 'js',
-        main: `angular2-modal.bootstrap.umd`
+        main: 'angular2-modal.bootstrap.umd'
       },
     }
   });
